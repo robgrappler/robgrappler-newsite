@@ -13,7 +13,10 @@ import SectionShell from "../components/SectionShell.astro";
             <div class="absolute inset-0 z-0">
                 <img
                     src="/images/mainpic.webp"
-                    alt="Background"
+                    alt="Grapplers locked up on a dark mat"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
                     class="object-cover object-[50%_20%] w-full h-full opacity-40 mix-blend-overlay animate-slow-scan"
                     onerror="this.style.display='none'; document.getElementById('hero-fallback').classList.remove('hidden');"
                 />
@@ -123,6 +126,8 @@ import SectionShell from "../components/SectionShell.astro";
                             <img
                                 src="/images/thumb_brutal.jpg"
                                 alt="Robgrappler vs Nocturmex 3"
+                                loading="lazy"
+                                decoding="async"
                                 class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
                             />
                             <div
@@ -182,6 +187,8 @@ import SectionShell from "../components/SectionShell.astro";
                             <img
                                 src="/images/thumb_storm.png"
                                 alt="Close‑angle submission storm"
+                                loading="lazy"
+                                decoding="async"
                                 class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
                             />
                             <div
@@ -236,6 +243,8 @@ import SectionShell from "../components/SectionShell.astro";
                             <img
                                 src="/images/Screenshot%202025-12-11%20at%204.09.49.png"
                                 alt="From intense to caress"
+                                loading="lazy"
+                                decoding="async"
                                 class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
                             />
                             <div
@@ -526,84 +535,69 @@ import SectionShell from "../components/SectionShell.astro";
                 </h2>
 
                 <div class="space-y-4">
-                    <!-- Q1 -->
-                    <div
-                        class="border border-white/10 bg-brand-black/50 rounded-none"
+                    <details
+                        class="group border border-white/10 bg-brand-black/50 rounded-none"
                     >
-                        <button
-                            class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
-                            onclick="document.getElementById('q1-content').classList.toggle('hidden'); document.getElementById('q1-icon').innerText = document.getElementById('q1-content').classList.contains('hidden') ? '+' : '-';"
+                        <summary
+                            class="w-full px-6 py-4 text-left flex justify-between items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
                         >
                             <span class="text-lg font-bold text-gray-200"
                                 >How do I watch purchased matches?</span
                             >
                             <span
-                                id="q1-icon"
-                                class="text-brand-gold text-2xl transform transition-transform duration-200"
+                                aria-hidden="true"
+                                class="text-brand-gold text-2xl transition-transform duration-200 group-open:rotate-45"
                                 >+</span
                             >
-                        </button>
-                        <div
-                            id="q1-content"
-                            class="hidden px-6 pb-4 text-gray-400 text-sm"
-                        >
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-400 text-sm">
                             Once you purchase a match or subscribe, you get
                             instant access to your library dashboard. You can
                             stream in 4K or download the MP4 files for offline
                             viewing. No DRM bullshit.
                         </div>
-                    </div>
-                    <!-- Q2 -->
-                    <div
-                        class="border border-white/10 bg-brand-black/50 rounded-none"
+                    </details>
+                    <details
+                        class="group border border-white/10 bg-brand-black/50 rounded-none"
                     >
-                        <button
-                            class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
-                            onclick="document.getElementById('q2-content').classList.toggle('hidden'); document.getElementById('q2-icon').innerText = document.getElementById('q2-content').classList.contains('hidden') ? '+' : '-';"
+                        <summary
+                            class="w-full px-6 py-4 text-left flex justify-between items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
                         >
                             <span class="text-lg font-bold text-gray-200"
                                 >Is this content real?</span
                             >
                             <span
-                                id="q2-icon"
-                                class="text-brand-gold text-2xl transform transition-transform duration-200"
+                                aria-hidden="true"
+                                class="text-brand-gold text-2xl transition-transform duration-200 group-open:rotate-45"
                                 >+</span
                             >
-                        </button>
-                        <div
-                            id="q2-content"
-                            class="hidden px-6 pb-4 text-gray-400 text-sm"
-                        >
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-400 text-sm">
                             100%. If it looks painful, it is. We vet all
                             athletes to ensure they are high-level competitors.
                             No works, no scripts.
                         </div>
-                    </div>
-                    <!-- Q3 -->
-                    <div
-                        class="border border-white/10 bg-brand-black/50 rounded-none"
+                    </details>
+                    <details
+                        class="group border border-white/10 bg-brand-black/50 rounded-none"
                     >
-                        <button
-                            class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
-                            onclick="document.getElementById('q3-content').classList.toggle('hidden'); document.getElementById('q3-icon').innerText = document.getElementById('q3-content').classList.contains('hidden') ? '+' : '-';"
+                        <summary
+                            class="w-full px-6 py-4 text-left flex justify-between items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
                         >
                             <span class="text-lg font-bold text-gray-200"
                                 >Can I cancel my subscription?</span
                             >
                             <span
-                                id="q3-icon"
-                                class="text-brand-gold text-2xl transform transition-transform duration-200"
+                                aria-hidden="true"
+                                class="text-brand-gold text-2xl transition-transform duration-200 group-open:rotate-45"
                                 >+</span
                             >
-                        </button>
-                        <div
-                            id="q3-content"
-                            class="hidden px-6 pb-4 text-gray-400 text-sm"
-                        >
+                        </summary>
+                        <div class="px-6 pb-4 text-gray-400 text-sm">
                             Yes. One click in your account settings. We don't
                             make you call anyone or jump through hoops.
                         </div>
-                    </div>
+                    </details>
                 </div>
             </div>
         </section>
