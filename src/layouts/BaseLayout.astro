@@ -11,6 +11,8 @@ import Nav from "../components/Nav.astro";
 <html lang="en" class="bg-rg-black text-white">
   <head>
     <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=B612:wght@400;700&display=swap"
       rel="stylesheet"
@@ -129,6 +131,12 @@ import Nav from "../components/Nav.astro";
     </style>
   </head>
   <body class="relative">
+    <a
+      class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-brand-gold focus:text-brand-black focus:px-4 focus:py-2"
+      href="#main-content"
+    >
+      Skip to main content
+    </a>
     <!-- Global Texture Overlays -->
     <div
       class="fixed inset-0 pointer-events-none z-50 opacity-[0.15] bg-[linear-gradient(to_bottom,rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.2)_50%,rgba(0,0,0,0.2))] bg-[length:100%_4px] animate-[scanlineMove_0.8s_linear_infinite]"
@@ -142,7 +150,7 @@ import Nav from "../components/Nav.astro";
       <Nav />
     </header>
 
-    <main class="relative">
+    <main id="main-content" class="relative">
       <slot />
     </main>
 
@@ -159,26 +167,22 @@ import Nav from "../components/Nav.astro";
 
           <div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
             <a
-              href="#"
-              onclick="router('terms'); return false;"
+              href="/terms"
               class="text-gray-500 hover:text-brand-gold text-sm transition-colors"
               >Terms</a
             >
             <a
-              href="#"
-              onclick="router('privacy'); return false;"
+              href="/privacy"
               class="text-gray-500 hover:text-brand-gold text-sm transition-colors"
               >Privacy</a
             >
             <a
-              href="#"
-              onclick="router('refunds'); return false;"
+              href="/refunds"
               class="text-gray-500 hover:text-brand-gold text-sm transition-colors"
               >Refunds</a
             >
             <a
-              href="#"
-              onclick="router('age-disclaimer'); return false;"
+              href="/agedisclaimer"
               class="text-gray-500 hover:text-brand-gold text-sm transition-colors"
               >Age Disclaimer</a
             >
