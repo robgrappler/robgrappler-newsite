@@ -1,0 +1,35 @@
+---
+const { heading, eyebrow, kicker, align = 'left', id, sectionClass = '' } = Astro.props;
+const alignClass =
+  align === 'center'
+    ? 'items-center text-center'
+    : align === 'right'
+    ? 'items-end text-right'
+    : 'items-start text-left';
+---
+
+<section id={id} class={`rg-section ${sectionClass}`}>
+  {(eyebrow || heading || kicker) && (
+    <header class={`flex flex-col gap-3 mb-10 sm:mb-12 ${alignClass}`}>
+      {eyebrow && (
+        <p class="text-[0.65rem] font-semibold tracking-[0.35em] uppercase text-rg-gold/70">
+          {eyebrow}
+        </p>
+      )}
+      {heading && (
+        <h2 class="rg-underline font-display text-3xl sm:text-4xl md:text-5xl tracking-[0.14em] uppercase">
+          {heading}
+        </h2>
+      )}
+      {kicker && (
+        <p class="max-w-xl text-sm text-zinc-400">
+          {kicker}
+        </p>
+      )}
+    </header>
+  )}
+
+  <div>
+    <slot />
+  </div>
+</section>

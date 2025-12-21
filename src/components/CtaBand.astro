@@ -1,0 +1,35 @@
+---
+// src/components/CtaBand.astro
+const { href = "/join", title, sub } = Astro.props;
+---
+
+<div class="band">
+    <a href={href} class="inner">
+        <div class="t">{title}</div>
+        <div class="s">{sub}</div>
+    </a>
+</div>
+
+<style>
+    .band {
+        grid-column: 1 / -1;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+    }
+    .inner {
+        display: block;
+        padding: 14px 14px;
+        text-decoration: none;
+    }
+    .t {
+        font-weight: 900;
+        font-size: 14px;
+    }
+    .s {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-top: 3px;
+    }
+</style>

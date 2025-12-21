@@ -1,0 +1,93 @@
+---
+// src/components/JoinTierCard.astro
+const { price = "$X / month" } = Astro.props;
+const bullets = [
+    "Full archive unlocked",
+    "New matches added",
+    "Instant access",
+];
+---
+
+<section class="hero">
+    <h1>Unlock full matches.</h1>
+    <p class="sub">Full matches. Full access.</p>
+
+    <div class="tier">
+        <div class="tierName">Full Access</div>
+
+        <div class="priceRow">
+            <div class="price">{price}</div>
+            <a class="cta" href="/checkout">Join now</a>
+        </div>
+
+        <ul class="bullets">
+            {bullets.map((b) => <li>{b}</li>)}
+        </ul>
+
+        <div class="risk">Cancel anytime.</div>
+    </div>
+</section>
+
+<style>
+    .hero {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 18px 16px 100px;
+    }
+    h1 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.05;
+        letter-spacing: -0.2px;
+    }
+    .sub {
+        margin: 8px 0 16px;
+        opacity: 0.85;
+    }
+    .tier {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 14px;
+    }
+    .tierName {
+        font-weight: 900;
+        font-size: 13px;
+        opacity: 0.95;
+    }
+    .priceRow {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .price {
+        font-weight: 900;
+        font-size: 18px;
+    }
+    .cta {
+        flex: 1 1 180px;
+        text-align: center;
+        padding: 12px 14px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 900;
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .bullets {
+        margin: 12px 0 0;
+        padding-left: 16px;
+        opacity: 0.92;
+    }
+    .bullets li {
+        margin: 6px 0;
+    }
+    .risk {
+        margin-top: 10px;
+        font-size: 12px;
+        opacity: 0.78;
+    }
+</style>

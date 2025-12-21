@@ -1,0 +1,214 @@
+---
+const {
+  title = "Robgrappler",
+  description = "Underground grappling cinema. Premium violence, controlled chaos.",
+  pageType = "website",
+} = Astro.props;
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+---
+
+<html lang="en" class="bg-rg-black text-white">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=B612:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:type" content={pageType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <style is:global>
+      /* Global Scanline Overlay */
+      .scanline-overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 50;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(245, 194, 101, 0.03) 50%,
+          transparent
+        );
+        background-size: 100% 4px;
+        animation: scanlineMove 8s linear infinite;
+        opacity: 0.5;
+      }
+
+      @keyframes scanlineMove {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 0 4px;
+        }
+      }
+
+      /* Brutalist Button snap */
+      .btn-brutal {
+        transition: all 0.1s cubic-bezier(0, 0, 0.2, 1);
+        position: relative;
+      }
+      .btn-brutal:active {
+        transform: translate(2px, 2px);
+      }
+
+      /* Glitch Text mechanics */
+      .glitch-text {
+        position: relative;
+        display: inline-block;
+      }
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+      }
+      .glitch-text::before {
+        left: 2px;
+        text-shadow: -1px 0 #f5c265;
+        clip-path: inset(44px 0 56px 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+      }
+      .glitch-text::after {
+        left: -2px;
+        text-shadow: -1px 0 #ff4d4d;
+        clip-path: inset(25px 0 96px 0);
+        animation: glitch-anim2 5s infinite linear alternate-reverse;
+      }
+
+      @keyframes glitch-anim {
+        0% {
+          clip-path: inset(30% 0 70% 0);
+        }
+        20% {
+          clip-path: inset(10% 0 80% 0);
+        }
+        40% {
+          clip-path: inset(50% 0 30% 0);
+        }
+        60% {
+          clip-path: inset(80% 0 10% 0);
+        }
+        80% {
+          clip-path: inset(20% 0 60% 0);
+        }
+        100% {
+          clip-path: inset(40% 0 40% 0);
+        }
+      }
+      @keyframes glitch-anim2 {
+        0% {
+          clip-path: inset(40% 0 40% 0);
+        }
+        20% {
+          clip-path: inset(60% 0 20% 0);
+        }
+        40% {
+          clip-path: inset(10% 0 80% 0);
+        }
+        60% {
+          clip-path: inset(70% 0 10% 0);
+        }
+        80% {
+          clip-path: inset(30% 0 50% 0);
+        }
+        100% {
+          clip-path: inset(80% 0 10% 0);
+        }
+      }
+    </style>
+  </head>
+  <body class="relative">
+    <!-- Global Texture Overlays -->
+    <div
+      class="fixed inset-0 pointer-events-none z-50 opacity-[0.15] bg-[linear-gradient(to_bottom,rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.2)_50%,rgba(0,0,0,0.2))] bg-[length:100%_4px] animate-[scanlineMove_0.8s_linear_infinite]"
+    >
+    </div>
+    <div class="rg-grain-overlay"></div>
+
+    <header
+      class="sticky top-0 z-30 border-b border-rg-purpleDeep/60 bg-gradient-to-b from-black/90 to-black/40 backdrop-blur-xl"
+    >
+      <Nav />
+    </header>
+
+    <main class="relative">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 py-12">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <span class="font-bebas text-2xl text-white">ROBGRAPPLER</span>
+            <p class="text-gray-600 text-xs mt-1">
+              © 2025 All Rights Reserved.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
+            <a
+              href="#"
+              onclick="router('terms'); return false;"
+              class="text-gray-500 hover:text-brand-gold text-sm transition-colors"
+              >Terms</a
+            >
+            <a
+              href="#"
+              onclick="router('privacy'); return false;"
+              class="text-gray-500 hover:text-brand-gold text-sm transition-colors"
+              >Privacy</a
+            >
+            <a
+              href="#"
+              onclick="router('refunds'); return false;"
+              class="text-gray-500 hover:text-brand-gold text-sm transition-colors"
+              >Refunds</a
+            >
+            <a
+              href="#"
+              onclick="router('age-disclaimer'); return false;"
+              class="text-gray-500 hover:text-brand-gold text-sm transition-colors"
+              >Age Disclaimer</a
+            >
+          </div>
+
+          <div class="flex space-x-4">
+            <!-- Social Placeholders -->
+            <a
+              href="#"
+              class="text-gray-500 hover:text-brand-gold transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                ><path
+                  d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                ></path></svg
+              >
+            </a>
+            <a
+              href="#"
+              class="text-gray-500 hover:text-brand-gold transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                ><path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                ></path></svg
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,152 @@
+---
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth bg-brand-black">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="description"
+            content="Premium underground grappling matches. No fluff. Just pressure."
+        />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>{title}</title>
+
+        <!-- Fonts: Bebas Neue, Inter, B612 -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body
+        class="antialiased text-gray-200 selection:bg-brand-gold selection:text-brand-black overflow-x-hidden"
+    >
+        <!-- Global Texture Overlays -->
+        <div
+            class="fixed inset-0 pointer-events-none z-50 opacity-[0.15] bg-[linear-gradient(to_bottom,rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.2)_50%,rgba(0,0,0,0.2))] bg-[length:100%_4px] animate-[scanlineMove_0.8s_linear_infinite]"
+        >
+        </div>
+        <div
+            class="fixed inset-0 pointer-events-none z-49 opacity-50 bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.04\'/%3E%3C/svg%3E')]"
+        >
+        </div>
+
+        <slot />
+    </body>
+</html>
+
+<style is:global>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #10051f;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #f5c265;
+    }
+
+    /* Animation Keyframes */
+    @keyframes scanlineMove {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 0 4px;
+        }
+    }
+
+    /* Utility Class: Brutalist Button ("The Detonator") */
+    .btn-brutal {
+        transition: all 0.1s cubic-bezier(0, 0, 0.2, 1);
+        position: relative;
+    }
+    .btn-brutal:active {
+        transform: translate(4px, 4px);
+        box-shadow: none !important;
+    }
+
+    /* Utility Class: Striped/Hazard Background */
+    .btn-striped {
+        background-image: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.1) 2px,
+            rgba(0, 0, 0, 0.1) 4px
+        );
+    }
+    /* When used on dark backgrounds, lighten the stripes slightly */
+    .btn-striped-light {
+        background-image: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.05) 2px,
+            rgba(255, 255, 255, 0.05) 4px
+        );
+    }
+
+    /* Utility Class: Glitch Text */
+    .glitch-text {
+        position: relative;
+    }
+    .glitch-text::before,
+    .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #020308;
+    }
+    .glitch-text::before {
+        left: 2px;
+        text-shadow: -1px 0 #ff00c1;
+        clip-path: inset(44px 0 56px 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+    .glitch-text::after {
+        left: -2px;
+        text-shadow: -1px 0 #00fff9;
+        clip-path: inset(25px 0 96px 0);
+        animation: glitch-anim2 5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+        0% {
+            clip-path: inset(38px 0 49px 0);
+        }
+        5% {
+            clip-path: inset(72px 0 24px 0);
+        }
+        100% {
+            clip-path: inset(57px 0 11px 0);
+        }
+    }
+    @keyframes glitch-anim2 {
+        0% {
+            clip-path: inset(25px 0 96px 0);
+        }
+        5% {
+            clip-path: inset(15px 0 2px 0);
+        }
+        100% {
+            clip-path: inset(96px 0 44px 0);
+        }
+    }
+</style>

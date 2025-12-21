@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Robgrappler global look */
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  @apply bg-rg-black text-white font-body;
+}
+
+body {
+  @apply min-h-screen antialiased;
+  background:
+    radial-gradient(circle at 0 0, rgba(245, 194, 101, 0.05) 0, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(245, 194, 101, 0.08) 0, transparent 55%),
+    #050509;
+}
+
+/* Simple container & section rhythm */
+
+.rg-shell {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.rg-section {
+  @apply rg-shell py-16 sm:py-20 lg:py-24;
+}
+
+/* Gold underline accent */
+
+.rg-underline {
+  position: relative;
+}
+
+.rg-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.4rem;
+  width: 4rem;
+  height: 2px;
+  background: linear-gradient(to right, #F5C265, transparent);
+  opacity: 0.8;
+}
+
+/* Cards */
+
+.rg-card {
+  @apply bg-rg-ink/80 border border-rg-purpleDeep/60 rounded-xl p-6 sm:p-8 shadow-rg-card;
+  backdrop-filter: blur(18px);
+}
+
+/* Subtle grain */
+
+.rg-grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="4" stitchTiles="noStitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.22"/></svg>');
+  mix-blend-mode: soft-light;
+}
+
+/* Scanline Animation */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.rg-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: white;
+  opacity: 0.1;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+  z-index: 20;
+  box-shadow: 0 0 10px 1px white;
+}
+
+/* Base styles / Reset */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-display;
+}
+
+/* Utility Class: Brutalist Button ("The Detonator") */
+.btn-brutal {
+  transition: all 0.1s cubic-bezier(0, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-brutal:active {
+  transform: translate(4px, 4px);
+  box-shadow: none !important;
+}
+
+/* Utility Class: Striped/Hazard Background */
+.btn-striped {
+  background-image: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.1) 2px,
+      rgba(0, 0, 0, 0.1) 4px);
+}
+
+/* When used on dark backgrounds, lighten the stripes slightly */
+.btn-striped-light {
+  background-image: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.05) 2px,
+      rgba(255, 255, 255, 0.05) 4px);
+}
+
+/* Utility Class: Glitch Text */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -1px 0 #f5c265;
+  clip-path: inset(44px 0 56px 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -1px 0 #ff4d4d;
+  clip-path: inset(25px 0 96px 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip-path: inset(30% 0 70% 0);
+  }
+
+  20% {
+    clip-path: inset(10% 0 80% 0);
+  }
+
+  40% {
+    clip-path: inset(50% 0 30% 0);
+  }
+
+  60% {
+    clip-path: inset(80% 0 10% 0);
+  }
+
+  80% {
+    clip-path: inset(20% 0 60% 0);
+  }
+
+  100% {
+    clip-path: inset(40% 0 40% 0);
+  }
+}
+
+@keyframes glitch-anim2 {
+  0% {
+    clip-path: inset(40% 0 40% 0);
+  }
+
+  20% {
+    clip-path: inset(60% 0 20% 0);
+  }
+
+  40% {
+    clip-path: inset(10% 0 80% 0);
+  }
+
+  60% {
+    clip-path: inset(70% 0 10% 0);
+  }
+
+  80% {
+    clip-path: inset(30% 0 50% 0);
+  }
+
+  100% {
+    clip-path: inset(80% 0 10% 0);
+  }
+}

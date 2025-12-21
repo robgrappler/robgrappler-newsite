@@ -1,0 +1,364 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionShell from "../components/SectionShell.astro";
+import Hero from "../components/Hero.astro";
+import PricingSection from "../components/PricingSection.astro";
+---
+
+<BaseLayout title="Robgrappler • Premium Grappling Violence">
+  <Hero />
+
+  <SectionShell
+    eyebrow="Why this exists"
+    heading="For people who hate soft combat sports content"
+    kicker="Most grappling footage is shot like sparring footage or influencer reels. Robgrappler is built like a controlled lab: brutal, cinematic, and edited down to the moments that actually matter."
+  >
+    <div class="grid gap-8 md:grid-cols-3">
+      <div class="rg-card">
+        <h3
+          class="text-xs font-semibold tracking-[0.3em] uppercase text-rg-gold mb-3"
+        >
+          No fluff
+        </h3>
+        <p class="text-sm text-zinc-300">
+          No 12-minute walkouts, handshakes, or dead stares. Only sequences,
+          traps, scrambles, and finishes—with context baked in for people who
+          actually train.
+        </p>
+      </div>
+
+      <div class="rg-card">
+        <h3
+          class="text-xs font-semibold tracking-[0.3em] uppercase text-rg-gold mb-3"
+        >
+          Shot for the mat
+        </h3>
+        <p class="text-sm text-zinc-300">
+          Angles are chosen like a DP, not a ref. You see grip fighting, hip
+          battles, and mistakes in disgusting detail. The camera is another
+          opponent, not a passive witness.
+        </p>
+      </div>
+
+      <div class="rg-card">
+        <h3
+          class="text-xs font-semibold tracking-[0.3em] uppercase text-rg-gold mb-3"
+        >
+          Built to sell
+        </h3>
+        <p class="text-sm text-zinc-300">
+          Every match is tagged, segmented, and ready to drop into funnels,
+          bundles, and campaigns. This isn’t “post and pray”—it’s inventory with
+          a plan.
+        </p>
+      </div>
+    </div>
+  </SectionShell>
+
+  {/* Featured matches */}
+  <section class="border-t border-rg-purpleDeep/60 bg-rg-ink/80">
+    <SectionShell
+      id="matches"
+      eyebrow="Matches"
+      heading="Featured matches"
+      kicker="Latest uploads from the mat. No tourists, no choreography—just pressure."
+      sectionClass="pt-16 pb-20 sm:pt-20 sm:pb-24"
+    >
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Match 1 */}
+        <article class="rg-card group p-0 overflow-hidden flex flex-col">
+          <div class="relative aspect-video overflow-hidden">
+            <img
+              src="/images/thumb_brutal.jpg"
+              alt="Robgrappler vs Nocturmex 3"
+              class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
+            />
+            <div
+              class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"
+            >
+            </div>
+            <div
+              class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200"
+            >
+              24:10
+            </div>
+            <div
+              class="absolute top-3 left-3 rounded-full bg-rg-gold px-3 py-1 text-[0.6rem] font-semibold tracking-[0.22em] uppercase text-black"
+            >
+              New release
+            </div>
+          </div>
+          <div class="flex flex-1 flex-col gap-4 p-6">
+            <div
+              class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase"
+            >
+              <span
+                class="rounded-full border border-zinc-700 px-2 py-1 text-zinc-400"
+                >No holds barred</span
+              >
+              <span
+                class="rounded-full border border-rg-red/60 px-2 py-1 text-rg-red"
+                >Submission only</span
+              >
+            </div>
+            <h3
+              class="font-display text-xl tracking-[0.14em] uppercase text-white group-hover:text-rg-gold transition-colors"
+            >
+              Robgrappler vs Nocturmex 3
+            </h3>
+            <p class="text-sm text-zinc-300">
+              Brutal back‑and‑forth. Two powerful wrestlers collide in a
+              relentless, sweat‑drenched war of attrition.
+            </p>
+            <a
+              href="https://view.wf/v/jxdekpgw"
+              target="_blank"
+              rel="noreferrer"
+              class="mt-auto inline-flex items-center justify-center rounded-full border border-rg-gold/70 px-5 py-2 text-xs font-semibold tracking-[0.26em] uppercase text-rg-gold hover:bg-rg-gold hover:text-black transition-all"
+            >
+              Watch match
+            </a>
+          </div>
+        </article>
+
+        {/* Match 2 */}
+        <article class="rg-card group p-0 overflow-hidden flex flex-col">
+          <div class="relative aspect-video overflow-hidden">
+            <img
+              src="/images/thumb_storm.png"
+              alt="Close‑angle submission storm"
+              class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
+            />
+            <div
+              class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"
+            >
+            </div>
+            <div
+              class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200"
+            >
+              18:45
+            </div>
+          </div>
+          <div class="flex flex-1 flex-col gap-4 p-6">
+            <div
+              class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase"
+            >
+              <span
+                class="rounded-full border border-zinc-700 px-2 py-1 text-zinc-400"
+                >Tournament</span
+              >
+              <span
+                class="rounded-full border border-zinc-700 px-2 py-1 text-zinc-400"
+                >Close‑up</span
+              >
+            </div>
+            <h3
+              class="font-display text-xl tracking-[0.14em] uppercase text-white group-hover:text-rg-gold transition-colors"
+            >
+              Close‑angle submission storm
+            </h3>
+            <p class="text-sm text-zinc-300">
+              Rob's 35th kickoff. Birthday‑bash tournament debut bout.
+              Fast‑paced scrambles captured in disgusting detail.
+            </p>
+            <a
+              href="https://view.wf/v/dijjihtm"
+              target="_blank"
+              rel="noreferrer"
+              class="mt-auto inline-flex items-center justify-center rounded-full border border-rg-gold/70 px-5 py-2 text-xs font-semibold tracking-[0.26em] uppercase text-rg-gold hover:bg-rg-gold hover:text-black transition-all"
+            >
+              Watch match
+            </a>
+          </div>
+        </article>
+
+        {/* Match 3 */}
+        <article class="rg-card group p-0 overflow-hidden flex flex-col">
+          <div class="relative aspect-video overflow-hidden">
+            <img
+              src="/images/Screenshot%202025-12-11%20at%204.09.49.png"
+              alt="From intense to caress"
+              class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
+            />
+            <div
+              class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"
+            >
+            </div>
+            <div
+              class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200"
+            >
+              22:15
+            </div>
+            <div
+              class="absolute top-3 left-3 rounded-full bg-white/10 px-3 py-1 text-[0.6rem] font-semibold tracking-[0.22em] uppercase text-zinc-100 backdrop-blur"
+            >
+              Fan favorite
+            </div>
+          </div>
+          <div class="flex flex-1 flex-col gap-4 p-6">
+            <div
+              class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase"
+            >
+              <span
+                class="rounded-full border border-zinc-700 px-2 py-1 text-zinc-400"
+                >Open weight</span
+              >
+              <span
+                class="rounded-full border border-purple-400/70 px-2 py-1 text-purple-300"
+                >Hunks</span
+              >
+            </div>
+            <h3
+              class="font-display text-xl tracking-[0.14em] uppercase text-white group-hover:text-rg-gold transition-colors"
+            >
+              From intense to caress
+            </h3>
+            <p class="text-sm text-zinc-300">
+              First erotic match with Dexter Glitch. Starts as a grinding
+              pressure war and mutates into something else entirely.
+            </p>
+            <a
+              href="https://view.wf/v/thfefpll"
+              target="_blank"
+              rel="noreferrer"
+              class="mt-auto inline-flex items-center justify-center rounded-full border border-rg-gold/70 px-5 py-2 text-xs font-semibold tracking-[0.26em] uppercase text-rg-gold hover:bg-rg-gold hover:text-black transition-all"
+            >
+              Watch match
+            </a>
+          </div>
+        </article>
+      </div>
+    </SectionShell>
+  </section>
+
+  <PricingSection />
+
+  {/* About */}
+  <section class="border-t border-rg-purpleDeep/60 bg-rg-black/90">
+    <SectionShell
+      id="about"
+      eyebrow="Philosophy"
+      heading="Real competition. Not content."
+      kicker="An archive built for people who care about pressure, control, and what actually wins matches."
+      sectionClass="pt-16 pb-20 sm:pt-20 sm:pb-24"
+    >
+      <div
+        class="grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-center"
+      >
+        <div class="space-y-6 text-sm sm:text-base text-zinc-300">
+          <p>
+            Robgrappler was born from a frustration with the sanitized,
+            over‑produced world of modern combat‑sports content. We wanted the
+            clear misses, the gritty scrambles, and the ugly, honest pressure.
+          </p>
+          <p>
+            This is an archive for purists. For people who study the nuance of
+            wrist control, top‑ride pressure, and the micro‑mistakes that get
+            punished instantly. The camera doesn’t flinch—it exposes.
+          </p>
+          <p
+            class="border-l-4 border-rg-gold pl-4 text-sm sm:text-base text-zinc-100"
+          >
+            “The goal isn’t to look good. The goal is to endure and to conquer.”
+          </p>
+          <div class="pt-2">
+            <a
+              href="#subscriptions"
+              class="inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.3em] uppercase text-rg-gold hover:text-white transition-colors"
+            >
+              Join the movement
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block">
+          <div
+            class="absolute inset-4 rounded-3xl border border-rg-gold/20 translate-x-3 translate-y-3 opacity-70"
+          >
+          </div>
+          <img
+            src="/images/match_close.jpg"
+            alt="Grappling intensity close‑up"
+            class="relative z-10 w-full rounded-3xl object-cover grayscale-[0.3] contrast-125 shadow-2xl"
+          />
+        </div>
+      </div>
+    </SectionShell>
+  </section>
+
+  {/* FAQ */}
+  <section class="border-t border-rg-purpleDeep/60 bg-rg-ink/90">
+    <SectionShell
+      id="faq"
+      eyebrow="FAQ"
+      heading="Questions that keep coming up"
+      align="center"
+      sectionClass="pt-16 pb-20 sm:pt-20 sm:pb-24 max-w-3xl"
+    >
+      <div class="space-y-3">
+        <details
+          class="group overflow-hidden rounded-xl border border-rg-purpleDeep/60 bg-black/40"
+        >
+          <summary
+            class="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-sm font-medium text-zinc-100"
+          >
+            <span>How do I watch my purchased matches?</span>
+            <span
+              class="ml-4 text-xs text-rg-gold transition-transform group-open:rotate-180"
+              >▼</span
+            >
+          </summary>
+          <div
+            class="border-t border-rg-purpleDeep/60 px-5 pb-5 pt-3 text-sm text-zinc-300"
+          >
+            After purchase you get an immediate link to stream or download your
+            match. Subscribers log in to their dashboard and hit the full
+            library instantly.
+          </div>
+        </details>
+
+        <details
+          class="group overflow-hidden rounded-xl border border-rg-purpleDeep/60 bg-black/40"
+        >
+          <summary
+            class="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-sm font-medium text-zinc-100"
+          >
+            <span>Can I download the videos?</span>
+            <span
+              class="ml-4 text-xs text-rg-gold transition-transform group-open:rotate-180"
+              >▼</span
+            >
+          </summary>
+          <div
+            class="border-t border-rg-purpleDeep/60 px-5 pb-5 pt-3 text-sm text-zinc-300"
+          >
+            Individual match buys include a 1080p HD download link. Subscribers
+            can download select matches through the platform, or just stream the
+            whole thing in‑browser.
+          </div>
+        </details>
+
+        <details
+          class="group overflow-hidden rounded-xl border border-rg-purpleDeep/60 bg-black/40"
+        >
+          <summary
+            class="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-sm font-medium text-zinc-100"
+          >
+            <span>What payment methods do you accept?</span>
+            <span
+              class="ml-4 text-xs text-rg-gold transition-transform group-open:rotate-180"
+              >▼</span
+            >
+          </summary>
+          <div
+            class="border-t border-rg-purpleDeep/60 px-5 pb-5 pt-3 text-sm text-zinc-300"
+          >
+            All major cards (Visa, Mastercard, Amex) plus PayPal, processed via
+            encrypted Stripe checkout. No surprise fees, no weird rebills.
+          </div>
+        </details>
+      </div>
+    </SectionShell>
+  </section>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import HeaderBar from "../components/HeaderBar.astro";
+import StickyCta from "../components/StickyCta.astro";
+import PreviewGrid from "../components/PreviewGrid.astro";
+
+// Replace with your data source
+const items = Array.from({ length: 24 }).map((_, i) => ({
+    title: [
+        "Pressure builds with no release",
+        "Grip holds through resistance",
+        "Attempts fail. Control stays dominant",
+    ][i % 3],
+    thumb: `/thumbs/${i + 1}.jpg`,
+    locked: true,
+}));
+---
+
+<html lang="en">
+    <head
+        ><meta charset="utf-8" /><meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+        /></head
+    >
+    <body>
+        <HeaderBar text="Previews only. Full matches are locked." />
+
+        <div class="wrap">
+            <div class="label">Preview Library</div>
+        </div>
+
+        <PreviewGrid items={items} bumpEvery={8} />
+
+        <StickyCta
+            href="/join"
+            label="Unlock full access"
+            subtext="Full matches are locked."
+        />
+
+        <style>
+            body {
+                margin: 0;
+                background: #050505;
+                color: #f2f2f2;
+                font-family: ui-sans-serif, system-ui;
+            }
+            .wrap {
+                max-width: 980px;
+                margin: 0 auto;
+                padding: 6px 16px 0;
+            }
+            .label {
+                font-size: 12px;
+                opacity: 0.78;
+                padding: 8px 0 4px;
+            }
+        </style>
+    </body>
+</html>

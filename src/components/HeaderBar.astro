@@ -1,0 +1,27 @@
+---
+// src/components/HeaderBar.astro
+const { text } = Astro.props;
+---
+
+<div class="headerbar" role="note" aria-label="Viewing mode">
+    {text}
+</div>
+
+<style>
+    .headerbar {
+        font-size: 13px;
+        line-height: 1.2;
+        opacity: 0.88;
+        padding: 10px 16px 6px;
+        max-width: 640px;
+        margin: 0 auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    @media (max-width: 360px) {
+        .headerbar {
+            font-size: 12px;
+        }
+    }
+</style>

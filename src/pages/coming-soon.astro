@@ -1,0 +1,195 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionShell from "../components/SectionShell.astro";
+import Hero from "../components/Hero.astro";
+import PricingSection from "../components/PricingSection.astro";
+---
+
+<BaseLayout title="Robgrappler • Premium Grappling Violence">
+    <Hero />
+
+    {/* Featured matches */}
+    <section class="border-t border-rg-purpleDeep/60 bg-rg-ink/80">
+        <SectionShell
+            id="matches"
+            eyebrow="Matches"
+            heading="Featured matches"
+            kicker="Latest uploads from the mat. No tourists, no choreography—just pressure."
+            sectionClass="pt-16 pb-20 sm:pt-20 sm:pb-24"
+        >
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {/* Match 1 */}
+                <article
+                    class="rg-card group p-0 overflow-hidden flex flex-col"
+                >
+                    <div class="relative aspect-video overflow-hidden">
+                        <img
+                            src="/images/thumb_brutal.jpg"
+                            alt="Robgrappler vs Nocturmex 3"
+                            class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
+                        />
+                        <div
+                            class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"
+                        >
+                        </div>
+                        <div
+                            class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200"
+                        >
+                            24:10
+                        </div>
+                        <div
+                            class="absolute top-3 left-3 rounded-full bg-rg-gold px-3 py-1 text-[0.6rem] font-semibold tracking-[0.22em] uppercase text-black"
+                        >
+                            New release
+                        </div>
+                    </div>
+                    <div class="flex flex-1 flex-col gap-4 p-6">
+                        <div
+                            class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase"
+                        >
+                            <span
+                                class="rounded-full border border-zinc-700 px-2 py-1 text-zinc-400"
+                                >No holds barred</span
+                            >
+                            <span
+                                class="rounded-full border border-rg-red/60 px-2 py-1 text-rg-red"
+                                >Submission only</span
+                            >
+                        </div>
+                        <h3
+                            class="font-display text-xl tracking-[0.14em] uppercase text-white group-hover:text-rg-gold transition-colors"
+                        >
+                            Robgrappler vs Nocturmex 3
+                        </h3>
+                        <p class="text-sm text-zinc-300">
+                            Brutal back‑and‑forth. Two powerful wrestlers
+                            collide in a relentless, sweat‑drenched war of
+                            attrition.
+                        </p>
+                        <a
+                            href="https://view.wf/v/jxdekpgw"
+                            target="_blank"
+                            rel="noreferrer"
+                            class="mt-auto inline-flex items-center justify-center rounded-full border border-rg-gold/70 px-5 py-2 text-xs font-semibold tracking-[0.26em] uppercase text-rg-gold hover:bg-rg-gold hover:text-black transition-all"
+                        >
+                            Watch match
+                        </a>
+                    </div>
+                </article>
+
+                {/* Match 2 */}
+                <article
+                    class="rg-card group p-0 overflow-hidden flex flex-col"
+                >
+                    <div class="relative aspect-video overflow-hidden">
+                        <img
+                            src="/images/thumb_storm.png"
+                            alt="Close‑angle submission storm"
+                            class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
+                        />
+                        <div
+                            class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"
+                        >
+                        </div>
+                        <div
+                            class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200"
+                        >
+                            18:45
+                        </div>
+                    </div>
+                    <div class="flex flex-1 flex-col gap-4 p-6">
+                        <div
+                            class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase"
+                        >
+                            <span
+                                class="rounded-full border border-zinc-700 px-2 py-1 text-zinc-400"
+                                >Tournament</span
+                            >
+                            <span
+                                class="rounded-full border border-zinc-700 px-2 py-1 text-zinc-400"
+                                >Close‑up</span
+                            >
+                        </div>
+                        <h3
+                            class="font-display text-xl tracking-[0.14em] uppercase text-white group-hover:text-rg-gold transition-colors"
+                        >
+                            Close‑angle submission storm
+                        </h3>
+                        <p class="text-sm text-zinc-300">
+                            Rob's 35th kickoff. Birthday‑bash tournament debut
+                            bout. Fast‑paced scrambles captured in disgusting
+                            detail.
+                        </p>
+                        <a
+                            href="https://view.wf/v/dijjihtm"
+                            target="_blank"
+                            rel="noreferrer"
+                            class="mt-auto inline-flex items-center justify-center rounded-full border border-rg-gold/70 px-5 py-2 text-xs font-semibold tracking-[0.26em] uppercase text-rg-gold hover:bg-rg-gold hover:text-black transition-all"
+                        >
+                            Watch match
+                        </a>
+                    </div>
+                </article>
+
+                {/* Match 3 */}
+                <article
+                    class="rg-card group p-0 overflow-hidden flex flex-col"
+                >
+                    <div class="relative aspect-video overflow-hidden">
+                        <img
+                            src="/images/Screenshot%202025-12-11%20at%204.09.49.png"
+                            alt="From intense to caress"
+                            class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
+                        />
+                        <div
+                            class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"
+                        >
+                        </div>
+                        <div
+                            class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200"
+                        >
+                            22:15
+                        </div>
+                        <div
+                            class="absolute top-3 left-3 rounded-full bg-white/10 px-3 py-1 text-[0.6rem] font-semibold tracking-[0.22em] uppercase text-zinc-100 backdrop-blur"
+                        >
+                            Fan favorite
+                        </div>
+                    </div>
+                    <div class="flex flex-1 flex-col gap-4 p-6">
+                        <div
+                            class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase"
+                        >
+                            <span
+                                class="rounded-full border border-zinc-700 px-2 py-1 text-zinc-400"
+                                >Open weight</span
+                            >
+                            <span
+                                class="rounded-full border border-purple-400/70 px-2 py-1 text-purple-300"
+                                >Hunks</span
+                            >
+                        </div>
+                        <h3
+                            class="font-display text-xl tracking-[0.14em] uppercase text-white group-hover:text-rg-gold transition-colors"
+                        >
+                            From intense to caress
+                        </h3>
+                        <p class="text-sm text-zinc-300">
+                            First erotic match with Dexter Glitch. Starts as a
+                            grinding pressure war and mutates into something
+                            else entirely.
+                        </p>
+                        <a
+                            href="https://view.wf/v/thfefpll"
+                            target="_blank"
+                            rel="noreferrer"
+                            class="mt-auto inline-flex items-center justify-center rounded-full border border-rg-gold/70 px-5 py-2 text-xs font-semibold tracking-[0.26em] uppercase text-rg-gold hover:bg-rg-gold hover:text-black transition-all"
+                        >
+                            Watch match
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </SectionShell>
+    </section>
+</BaseLayout>

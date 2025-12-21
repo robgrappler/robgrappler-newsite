@@ -1,0 +1,147 @@
+---
+const tiers = [
+    {
+        id: "onlyfans",
+        badge: "THE COLLECTOR'S CUT",
+        platform: "ONLYFANS",
+        price: "9.90",
+        bullets: [
+            "Adult-first scenes, body worship & heat-heavy moments.",
+            "Raw BTS and private sets not on other platforms.",
+            "Priority in polls for fetish-focused experiments.",
+        ],
+        cta: "ENTER AS A COLLECTOR",
+        highlight: false,
+    },
+    {
+        id: "watchfighters",
+        badge: "MOST POPULAR · HARDCORE FAN",
+        platform: "WATCHFIGHTERS",
+        price: "19.99",
+        bullets: [
+            "Complete Robgrappler wrestling archive in HD/4K.",
+            "Technique-first: pressure, control, tap-or-sleep intensity.",
+            "New full matches & rivalries added regularly.",
+        ],
+        cta: "UNLOCK THE FULL ARCHIVE",
+        highlight: true,
+    },
+    {
+        id: "faphouse",
+        badge: "CASUAL VIEWER MODE",
+        platform: "FAPHOUSE",
+        price: "14.99",
+        bullets: [
+            "Curated mix of fan-favorite bouts & extended cuts.",
+            "Balanced wrestle + erotic edge without overload.",
+            "Lightweight library for quick, no-scroll sessions.",
+        ],
+        cta: "JOIN THE SIDE CHANNEL",
+        highlight: false,
+    },
+];
+---
+
+<section
+    class="relative w-full bg-[#05030A] text-slate-100 py-20 lg:py-28 overflow-hidden"
+>
+    <div class="pointer-events-none absolute inset-0 opacity-40">
+        <div
+            class="absolute -left-32 -top-32 h-80 w-80 rounded-full bg-[#F5C265]/10 blur-3xl"
+        >
+        </div>
+        <div
+            class="absolute right-0 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-purple-700/20 blur-3xl"
+        >
+        </div>
+    </div>
+
+    <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+            <p
+                class="tracking-[0.35em] text-xs font-semibold text-[#F5C265] uppercase"
+            >
+                Membership
+            </p>
+            <h2
+                class="font-display mt-4 text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[0.16em] text-slate-50 uppercase"
+            >
+                Join the Inner Circle
+            </h2>
+            <p
+                class="mt-4 max-w-2xl mx-auto text-sm sm:text-base text-slate-300/80"
+            >
+                Three ways into the Robgrappler universe: adult-heavy, pure
+                grappling, or a lighter side channel. Pick your poison.
+            </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3 items-stretch">
+            {
+                tiers.map((tier) => (
+                    <article
+                        id={tier.id}
+                        class={`group relative flex flex-col rounded-3xl border border-slate-800/70 bg-[#070513]/95 px-6 pt-8 pb-6 shadow-[0_18px_50px_rgba(0,0,0,0.75)] transition-all duration-300 
+            hover:-translate-y-2 hover:border-[#F5C265]/60 hover:shadow-[0_25px_80px_rgba(0,0,0,0.9)]
+            ${tier.highlight ? "md:scale-[1.03] md:-translate-y-1 border-[#F5C265]/70 bg-[#090616]" : ""}`}
+                    >
+                        <div
+                            class={`mb-4 text-[11px] font-semibold tracking-[0.24em] uppercase ${
+                                tier.highlight
+                                    ? "text-[#F5C265]"
+                                    : "text-slate-400/80"
+                            }`}
+                        >
+                            {tier.badge}
+                        </div>
+
+                        <h3 class="font-display text-sm font-semibold tracking-[0.5em] text-slate-100 uppercase">
+                            {tier.platform}
+                        </h3>
+
+                        <div class="mt-5 flex items-baseline gap-2">
+                            <div class="text-3xl sm:text-4xl font-semibold text-slate-50">
+                                ${tier.price}
+                            </div>
+                            <div class="text-[11px] uppercase tracking-[0.22em] text-slate-400/80">
+                                / month
+                            </div>
+                        </div>
+
+                        <ul class="mt-6 flex-1 space-y-2.5 text-sm text-slate-200/90">
+                            {tier.bullets.map((item) => (
+                                <li class="flex gap-2.5">
+                                    <span class="mt-1 inline-flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#F5C265]/70 bg-transparent text-[9px] text-[#F5C265] group-hover:scale-110 transition-transform duration-200">
+                                        ●
+                                    </span>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+
+                        <div class="mt-7">
+                            <button
+                                class={`w-full rounded-full border text-[11px] font-semibold tracking-[0.22em] uppercase py-2.5
+                transition-all duration-200
+                ${
+                    tier.highlight
+                        ? "border-[#F5C265] bg-[#F5C265] text-[#160E05] shadow-[0_10px_35px_rgba(245,194,101,0.7)] hover:bg-[#FFE09B]"
+                        : "border-[#F5C265]/70 bg-transparent text-slate-100 hover:bg-[#F5C265]/12 hover:text-[#F5C265]"
+                }`}
+                            >
+                                {tier.cta}
+                            </button>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+
+        <p
+            class="mt-10 text-center text-[11px] uppercase tracking-[0.18em] text-slate-500/80"
+        >
+            OnlyFans leans adult &amp; intimate. WatchFighters is pure wrestling
+            archive. FapHouse sits in the middle.
+        </p>
+    </div>
+</section>

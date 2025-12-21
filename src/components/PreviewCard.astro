@@ -1,0 +1,86 @@
+---
+// src/components/PreviewCard.astro
+const { item } = Astro.props;
+// item: { title, thumb, locked: true, previewSrc? }
+---
+
+<article class="card">
+    <a
+        class="media"
+        href="/join"
+        aria-label={`Open access to view: ${item.title}`}
+    >
+        <img src={item.thumb} alt={item.title} loading="lazy" />
+        {
+            item.locked && (
+                <div class="lock">
+                    <div class="lockMain">Full match locked</div>
+                    <div class="lockSub">Archive access required</div>
+                </div>
+            )
+        }
+    </a>
+
+    <div class="meta">
+        <div class="title">{item.title}</div>
+        <div class="sub">Preview only</div>
+    </div>
+</article>
+
+<style>
+    .card {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #0b0b0b;
+    }
+    .media {
+        position: relative;
+        display: block;
+        aspect-ratio: 4/5;
+        overflow: hidden;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: contrast(1.05) saturate(1.02);
+    }
+    .lock {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 10px;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.88),
+            rgba(0, 0, 0, 0.05)
+        );
+    }
+    .lockMain {
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 0.2px;
+    }
+    .lockSub {
+        font-size: 11px;
+        opacity: 0.85;
+        margin-top: 2px;
+    }
+    .meta {
+        padding: 10px;
+    }
+    .title {
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .sub {
+        font-size: 12px;
+        opacity: 0.75;
+        margin-top: 4px;
+    }
+</style>

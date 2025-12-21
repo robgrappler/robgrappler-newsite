@@ -1,0 +1,129 @@
+You are a senior web designer and frontend architect building a high-end, underground grappling brand website called "Robgrappler".
+
+GOAL
+Create a modern, responsive, conversion-focused website for Robgrappler:
+- Core purpose: sell premium wrestling/grappling video matches and subscriptions.
+- Vibe: high-end underground fight club + luxury fetish aesthetics, but keep it PG-13 and non-explicit.
+- Priority: make it EASY to buy matches and subscribe.
+
+BRAND & VISUALS
+Use this visual identity:
+- Brand name: Robgrappler
+- Palette:
+  - Dark Gold: #F5C265 (accents, buttons, key text, thin borders)
+  - Deep Purple: #10051F (primary background)
+  - Near Black: #020308 (page background / sections)
+  - Neutral Gray for body text
+- Typography:
+  - Headings: bold, condensed, masculine display font (e.g. similar to Bebas Neue)
+  - Body: clean, modern sans-serif (e.g. similar to Inter)
+- Style:
+  - Dark mode only
+  - Strong contrast
+  - Subtle gradients and glow behind key elements (not neon club trash)
+  - Use gold sparingly as highlight, never as giant flat background
+
+LAYOUT & SECTIONS
+Build a single-page layout with clear sections:
+
+1) Sticky Navbar
+   - Logo / wordmark: "Robgrappler"
+   - Links: "Matches", "Subscriptions", "About", "FAQ", "Contact"
+   - Right side: primary CTA button: "Enter The Mat" (scrolls to pricing/subscriptions)
+
+2) Hero Section (above the fold)
+   - Full-width dark hero with:
+     - Main headline: something like "Underground Grappling. No Fluff. Just Pressure."
+     - Subheadline: 1–2 lines about premium, intense, real wrestling matches.
+     - Two CTAs:
+       - Primary (gold button): "Watch Full Matches"
+       - Secondary (outlined): "Browse Match Library"
+     - Space for a large thumbnail/video preview area (mock a match highlight card)
+   - Add small trust badges below CTAs, e.g. “No scripts, no fake moves”, “HD Downloads”, “Secure payment”.
+
+3) Featured Matches Section
+   - Grid or cards for 3–6 "featured matches".
+   - Each card: thumbnail placeholder, match title, short description, duration, difficulty/intensity tags.
+   - Each card has a "View Match" button.
+   - Design this so more cards can be added easily later.
+
+4) Subscriptions / Pricing Section
+   - 2–3 tier pricing layout:
+     - Example tiers: "Single Match", "Monthly Access", "VIP Library"
+     - Include price, what’s included, and a clear gold CTA button per tier ("Get Access").
+   - Highlight one recommended tier with stronger visual emphasis.
+
+5) About Section
+   - Short story about Robgrappler:
+     - Real grappling, pressure-heavy style, competitive intensity.
+     - No fake drama, just holds, scrambles, dominance.
+   - Layout: one column text + one side visual placeholder (image or video).
+
+6) FAQ Section
+   - Simple accordion-style or stacked questions:
+     - "How do I watch my purchased matches?"
+     - "Are these real competitive matches?"
+     - "Can I download the videos?"
+     - "What payment methods do you accept?"
+
+LEGAL PAGES (REQUIRED)
+Include basic legal pages as static Astro routes:
+
+Create the following pages:
+- /privacy
+- /terms
+- /refunds
+- /age-disclaimer (if appropriate)
+
+Implementation details:
+- Each page must be its own Astro file under /src/pages/
+- Use the BaseLayout.astro layout
+- Content must be plain, neutral, and professional
+- No marketing language, no animations, no hero sections
+- Text-only content with clear headings
+
+Privacy Policy must cover:
+- Analytics and basic site usage data
+- External payment processors
+- Data retention and user rights
+
+Terms of Service must cover:
+- Digital content sales
+- Personal-use license only
+- No redistribution
+- Limitation of liability
+
+Refund Policy must clearly state:
+- Whether refunds are allowed for digital purchases
+- Conditions and time limits, if any
+
+Age Disclaimer must state:
+- Content is intended for adults only
+- Viewer discretion advised
+
+7) Footer
+   - Links: Terms, Privacy, Contact, Social icons.
+   - Small, subtle text in gray.
+   Add links to all legal pages in the site footer
+
+TECH & IMPLEMENTATION DETAILS
+- Use semantic HTML5.
+- Use Tailwind CSS if possible; if not, use vanilla CSS with utility-style classes.
+- Make it fully responsive (mobile-first).
+- Use consistent spacing scale and vertical rhythm.
+- Avoid unnecessary libraries and bloat.
+- Include subtle hover states on buttons and cards.
+- Do NOT include any backend code, only frontend.
+
+INTERACTIVITY
+- Optional: small, subtle scroll or fade-in animations using simple CSS or minimal JS.
+- Optional: highlight active nav link based on scroll position.
+
+OUTPUT FORMAT
+1) Full HTML document with <head>, <body>, and all sections.
+2) CSS (Tailwind classes directly in HTML OR a separate <style> block if using vanilla CSS).
+3) Very short note at the end explaining where to:
+   - Change colors
+   - Update match cards
+   - Update pricing tiers
+Start by outputting the full HTML and CSS.

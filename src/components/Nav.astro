@@ -1,0 +1,149 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  {
+    href: "https://www.watchfighters.com/channels/Robgrappler",
+    label: "Watchfighters",
+  },
+  { href: "https://joinmy.fans/robgrappler", label: "Faphouse" },
+];
+---
+
+<!-- Navigation -->
+<nav
+  class="fixed w-full z-40 top-0 start-0 border-b border-white/10 bg-brand-black/90 backdrop-blur-md"
+>
+  <div
+    class="max-w-7xl mx-auto flex flex-wrap items-center justify-between mx-auto p-4"
+  >
+    <a
+      href="#"
+      onclick="router('home'); return false;"
+      class="flex items-center space-x-3 rtl:space-x-reverse group"
+    >
+      <!-- Logo Container with Fallback Logic -->
+      <div class="relative w-10 h-10 flex-shrink-0">
+        <img
+          src="/images/image_1.png"
+          alt="Robgrappler Logo"
+          class="absolute inset-0 w-full h-full object-contain rotate-3 group-hover:rotate-0 transition-transform duration-300 drop-shadow-[0_0_5px_rgba(245,194,101,0.5)] z-10"
+          onerror="this.style.display='none'; document.getElementById('fallback-logo').classList.remove('hidden');"
+        />
+        <div
+          id="fallback-logo"
+          class="hidden w-full h-full bg-brand-gold flex items-center justify-center rounded-sm rotate-3 group-hover:rotate-0 transition-transform duration-300 absolute inset-0"
+        >
+          <span class="font-bebas text-brand-black text-2xl font-bold pt-1"
+            >R</span
+          >
+        </div>
+      </div>
+
+      <span
+        class="self-center text-2xl font-tech font-bold whitespace-nowrap text-brand-bone tracking-wider"
+      >
+        <span class="transition-colors group-hover:text-brand-gold">Rob</span
+        >grappler
+      </span>
+    </a>
+
+    <div
+      class="flex md:order-2 space-x-3 md:space-x-4 rtl:space-x-reverse items-center"
+    >
+      <!-- Status Indicator: "Live" feel -->
+      <div class="hidden lg:flex items-center mr-6 gap-2">
+        <div
+          class="w-1.5 h-1.5 bg-[#FF4D4D] rounded-full animate-pulse shadow-[0_0_8px_#FF4D4D]"
+        >
+        </div>
+        <span
+          class="text-[9px] uppercase font-bold text-zinc-500 tracking-[0.2em]"
+          >System Online</span
+        >
+      </div>
+
+      <!-- NAVBAR BUTTON -->
+      <a
+        href="https://joinmy.fans/robgrappler"
+        class="group relative inline-flex items-center justify-center bg-rg-gold px-6 py-2 text-[11px] font-bold tracking-[0.2em] uppercase text-black transition-all hover:-translate-x-0.5 hover:-translate-y-0.5"
+      >
+        <span class="relative z-10">Enter The Mat</span>
+        <div
+          class="absolute inset-0 -z-10 translate-x-1 translate-y-1 border border-white transition-transform group-hover:translate-x-2 group-hover:translate-y-2"
+        >
+        </div>
+        <div
+          class="absolute inset-0 -z-20 translate-x-2 translate-y-2 border border-white/50 transition-transform group-hover:translate-x-3 group-hover:translate-y-3"
+        >
+        </div>
+      </a>
+
+      <button
+        data-collapse-toggle="navbar-sticky"
+        type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600"
+        aria-controls="navbar-sticky"
+        aria-expanded="false"
+        id="menu-toggle"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="w-5 h-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div
+      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+      id="navbar-sticky"
+    >
+      <ul
+        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-800 rounded-lg bg-brand-purple/50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent"
+      >
+        <li>
+          <a
+            href="#matches"
+            onclick="router('home')"
+            class="block py-2 px-3 text-zinc-400 rounded hover:bg-gray-800 md:hover:bg-transparent md:hover:text-white md:p-0 font-body text-[11px] font-bold uppercase tracking-[0.25em] transition-colors"
+            >Matches</a
+          >
+        </li>
+        <li>
+          <a
+            href="#pricing"
+            onclick="router('home')"
+            class="block py-2 px-3 text-zinc-400 rounded hover:bg-gray-800 md:hover:bg-transparent md:hover:text-white md:p-0 font-body text-[11px] font-bold uppercase tracking-[0.25em] transition-colors"
+            >Subscriptions</a
+          >
+        </li>
+        <li>
+          <a
+            href="#about"
+            onclick="router('home')"
+            class="block py-2 px-3 text-zinc-400 rounded hover:bg-gray-800 md:hover:bg-transparent md:hover:text-white md:p-0 font-body text-[11px] font-bold uppercase tracking-[0.25em] transition-colors"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            href="#faq"
+            onclick="router('home')"
+            class="block py-2 px-3 text-zinc-400 rounded hover:bg-gray-800 md:hover:bg-transparent md:hover:text-white md:p-0 font-body text-[11px] font-bold uppercase tracking-[0.25em] transition-colors"
+            >FAQ</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

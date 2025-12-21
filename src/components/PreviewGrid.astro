@@ -1,0 +1,48 @@
+---
+// src/components/PreviewGrid.astro
+import PreviewCard from "./PreviewCard.astro";
+import CtaBand from "./CtaBand.astro";
+
+const { items, bumpEvery = 8 } = Astro.props;
+---
+
+<div class="gridWrap">
+    <div class="grid">
+        {
+            items.map((item, i) => (
+                <>
+                    <PreviewCard item={item} />
+                    {(i + 1) % bumpEvery === 0 && (
+                        <CtaBand
+                            href="/join"
+                            title="Unlock full access"
+                            sub="Full matches. Full access."
+                        />
+                    )}
+                </>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    .gridWrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 10px 12px 90px;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+    @media (min-width: 820px) {
+        .grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+        .gridWrap {
+            padding: 16px 16px 100px;
+        }
+    }
+</style>
