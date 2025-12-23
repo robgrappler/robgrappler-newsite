@@ -86,7 +86,7 @@ body {
   background: white;
   opacity: 0.1;
   pointer-events: none;
-  animation: scanline 8s linear infinite;
+  animation: scanline 50s linear infinite;
   z-index: 20;
   box-shadow: 0 0 10px 1px white;
 }
@@ -101,34 +101,109 @@ h6 {
   @apply font-display;
 }
 
-/* Utility Class: Brutalist Button ("The Detonator") */
-.btn-brutal {
+@keyframes stripe-slide {
+  0% {
+    background-position: 0% 100%;
+  }
+
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+/* 
+   GLOBAL BUTTON STRIPE SYSTEM
+   Logic: 
+   - No background / Transparent: No lines
+   - White/Light background: Dark opacity lines
+   - Colored background: Light opacity lines
+*/
+
+.btn-brutal,
+.btn-striped,
+.btn-striped-light,
+button:not(.bg-transparent),
+a.btn-brutal {
   transition: all 0.1s cubic-bezier(0, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  background-size: 200% 200%;
+  background-image: none;
+
+  /* STATIONARY SHADOW VARIABLES */
+  --brutal-translate: 0px;
+  --brutal-shadow-offset: 4px;
+  --brutal-shadow-color: rgba(255, 255, 255, 1);
+
+  transform: translate(var(--brutal-translate), var(--brutal-translate));
+  box-shadow: var(--brutal-shadow-offset) var(--brutal-shadow-offset) 0px 0px var(--brutal-shadow-color);
 }
 
+/* Hover: Move halfway, shadow offset drops halfway (Stationary at +4px) */
+.btn-brutal:hover {
+  --brutal-translate: 2px;
+  --brutal-shadow-offset: 2px;
+}
+
+/* Active: Move fully, shadow offset drops to 0 (Stationary at +4px) */
 .btn-brutal:active {
-  transform: translate(4px, 4px);
+  --brutal-translate: 4px !important;
+  --brutal-shadow-offset: 0px !important;
   box-shadow: none !important;
+  /* Safety for some browsers */
 }
 
-/* Utility Class: Striped/Hazard Background */
-.btn-striped {
-  background-image: repeating-linear-gradient(45deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.1) 2px,
-      rgba(0, 0, 0, 0.1) 4px);
+/* SHADOW COLOR UTILITIES */
+.brutal-shadow-gold {
+  --brutal-shadow-color: #F5C265 !important;
 }
 
-/* When used on dark backgrounds, lighten the stripes slightly */
-.btn-striped-light {
-  background-image: repeating-linear-gradient(45deg,
+.brutal-shadow-white {
+  --brutal-shadow-color: #FFFFFF !important;
+}
+
+.brutal-shadow-none {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* 
+   LIGHT STRIPES (Colored Backgrounds)
+   Applied whenever a button has a background that isn't white or transparent
+*/
+.btn-brutal[class*="bg-"]:not([class*="bg-white"]):not([class*="bg-transparent"]),
+button[class*="bg-"]:not([class*="bg-white"]):not([class*="bg-transparent"]),
+.btn-brutal[class*="hover:bg-"]:not([class*="hover:bg-white"]):not([class*="hover:bg-transparent"]):hover,
+button[class*="hover:bg-"]:not([class*="hover:bg-white"]):not([class*="hover:bg-transparent"]):hover {
+  background-image: repeating-linear-gradient(to bottom,
       transparent,
       transparent 2px,
       rgba(255, 255, 255, 0.05) 2px,
-      rgba(255, 255, 255, 0.05) 4px);
+      rgba(255, 255, 255, 0.05) 4px) !important;
+  animation: stripe-slide 8s linear infinite !important;
+}
+
+/* 
+   DARK STRIPES (White/Light Backgrounds)
+*/
+.btn-brutal[class*="bg-white"],
+button[class*="bg-white"],
+.btn-brutal[class*="hover:bg-white"]:hover,
+button[class*="hover:bg-white"]:hover,
+.btn-brutal[class*="hover:bg-brand-bone"]:hover,
+button[class*="hover:bg-brand-bone"]:hover {
+  background-image: repeating-linear-gradient(to bottom,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.05) 2px,
+      rgba(0, 0, 0, 0.05) 4px) !important;
+  animation: stripe-slide 8s linear infinite !important;
+}
+
+/* NO STRIPES (Explicitly No Stripe Class) */
+.btn-brutal:not(.btn-striped):not(.btn-striped-light) {
+  background-image: none !important;
+  animation: none !important;
 }
 
 /* Utility Class: Glitch Text */
