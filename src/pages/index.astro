@@ -45,8 +45,8 @@ import SectionShell from "../components/SectionShell.astro";
                         <span class="text-brand-gold text-xs font-bold tracking-[0.2em] uppercase animate-pulse-slow">
                             <span class="lang-en">Private Match Archive // Secure</span>
                             <span class="lang-es hidden">Archivo Privado // Seguro</span>
-                    </span>
-                </div>
+                        </span>
+                    </div>
                 </div>
 
                 <!-- TITLE BLOCK WITH SCANLINE -->
@@ -55,15 +55,15 @@ import SectionShell from "../components/SectionShell.astro";
                     <div class="rg-scanline pointer-events-none absolute inset-0 z-20"></div>
                     
                     <h1 class="block text-center text-6xl md:text-8xl lg:text-9xl font-bebas text-brand-bone leading-[0.9] mb-6 relative z-10">
-                        <!-- English Line 1 (Visible by default) -->
+                        <!-- English Line 1 -->
                         <span class="block lang-en glitch-text" data-text="UNDERGROUND">UNDERGROUND</span>
-                        <!-- Spanish Line 1 (HIDDEN by default) -->
+                        <!-- Spanish Line 1 -->
                         <span class="block lang-es hidden glitch-text" data-text="GRAPPLING">GRAPPLING</span>
                         
                         <span class="block">
-                            <!-- English Line 2 (Visible by default) -->
+                            <!-- English Line 2 -->
                             <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-bone to-gray-600 lang-en glitch-text" data-text="GRAPPLING">GRAPPLING</span>
-                            <!-- Spanish Line 2 (HIDDEN by default) -->
+                            <!-- Spanish Line 2 -->
                             <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-bone to-gray-600 lang-es hidden glitch-text" data-text="CLANDESTINO">CLANDESTINO</span>
                             <!-- The Dot -->
                             <span class="text-brand-gold drop-shadow-[0_0_15px_rgba(245,194,101,1)]">.</span>
@@ -322,6 +322,11 @@ import SectionShell from "../components/SectionShell.astro";
     </div>
 
 <style>
+    /* FORCE HIDDEN: Ensure language toggles work instantly */
+    .hidden {
+        display: none !important;
+    }
+
     /* 1. The Glitch Effect logic */
     .glitch-text {
         position: relative;
@@ -400,17 +405,19 @@ import SectionShell from "../components/SectionShell.astro";
     const toggleBtn = document.getElementById('lang-toggle');
     let isSpanish = false;
 
-    toggleBtn?.addEventListener('click', () => {
-        isSpanish = !isSpanish;
-        const enElements = document.querySelectorAll('.lang-en');
-        const esElements = document.querySelectorAll('.lang-es');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            isSpanish = !isSpanish;
+            const enElements = document.querySelectorAll('.lang-en');
+            const esElements = document.querySelectorAll('.lang-es');
 
-        if (isSpanish) {
-            enElements.forEach(el => el.classList.add('hidden'));
-            esElements.forEach(el => el.classList.remove('hidden'));
-        } else {
-            enElements.forEach(el => el.classList.remove('hidden'));
-            esElements.forEach(el => el.classList.add('hidden'));
-        }
-    });
+            if (isSpanish) {
+                enElements.forEach(el => el.classList.add('hidden'));
+                esElements.forEach(el => el.classList.remove('hidden'));
+            } else {
+                enElements.forEach(el => el.classList.remove('hidden'));
+                esElements.forEach(el => el.classList.add('hidden'));
+            }
+        });
+    }
 </script>
