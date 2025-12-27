@@ -1,30 +1,37 @@
-<!-- Age Disclaimer -->
-<section
-    id="age-disclaimer"
-    class="page-section min-h-screen pt-24 pb-12 bg-brand-black"
->
-    <div class="max-w-3xl mx-auto px-4">
-        <h1
-            class="text-4xl font-bebas text-brand-bone mb-8 border-b border-brand-gold pb-4"
-        >
-            Age Disclaimer
-        </h1>
-        <div class="prose prose-invert prose-sm text-gray-400">
-            <p class="text-xl text-white mb-4 font-bold">Content Warning</p>
-            <p>
-                The content on Robgrappler involves intense physical combat,
-                submission holds, and potential injury simulations. It is
-                intended for mature audiences (18+) interested in martial arts.
-            </p>
-            <p>
-                By entering this site, you confirm you are of legal age in your
-                jurisdiction.
-            </p>
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Age Disclaimer | Robgrappler" description="Age disclaimer for Robgrappler.">
+    <!-- Age Disclaimer -->
+    <section
+        id="age-disclaimer"
+        class="page-section min-h-screen pt-24 pb-12 bg-brand-black"
+    >
+        <div class="max-w-3xl mx-auto px-4">
+            <h1
+                class="text-4xl font-bebas text-brand-bone mb-8 border-b border-brand-gold pb-4"
+            >
+                Age Disclaimer
+            </h1>
+            <div class="prose prose-invert prose-sm text-gray-400">
+                <p class="text-xl text-white mb-4 font-bold">Content Warning</p>
+                <p>
+                    The content on Robgrappler involves intense physical combat,
+                    submission holds, and potential injury simulations. It is
+                    intended for mature audiences (18+) interested in martial arts.
+                </p>
+                <p>
+                    By entering this site, you confirm you are of legal age in your
+                    jurisdiction.
+                </p>
+            </div>
+            <a
+                href="/"
+                data-track="footer_back_home"
+                class="mt-8 inline-block text-brand-gold hover:text-white font-bold"
+                >&larr; Back to Home</a
+            >
         </div>
-        <a
-            href="/"
-            class="mt-8 inline-block text-brand-gold hover:text-white font-bold"
-            >&larr; Back to Home</a
-        >
-    </div>
-</section>
+    </section>
+</BaseLayout>

@@ -3,14 +3,15 @@ import netlify from '@astrojs/netlify';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
+
+
+const site = process.env.PUBLIC_SITE_URL || process.env.SITE_URL || process.env.URL || 'https://robgrappler.example';
+
 export default defineConfig({
-  site: 'https://robgrappler.example', // TODO: update to real domain
+  site,
   output: 'static',
   adapter: netlify(),
-  integrations: [
-    react(),
-    tailwind({
-      applyBaseStyles: true
-    })
-  ]
+  integrations: [react(), tailwind({
+    applyBaseStyles: true
+  })]
 });

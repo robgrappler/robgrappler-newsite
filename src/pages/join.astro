@@ -1,29 +1,16 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import JoinTierCard from "../components/JoinTierCard.astro";
 import StickyCta from "../components/StickyCta.astro";
 ---
 
-<html lang="en">
-    <head
-        ><meta charset="utf-8" /><meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-        /></head
-    >
-    <body>
+<BaseLayout title="Join | Robgrappler" description="Join for full access to the Robgrappler archive.">
+    <div class="pt-24">
         <JoinTierCard price="$X / month" />
         <StickyCta
             href="/checkout"
             label="Join now"
             subtext="Full matches. Full access."
         />
-        <style>
-            body {
-                margin: 0;
-                background: #050505;
-                color: #f2f2f2;
-                font-family: ui-sans-serif, system-ui;
-            }
-        </style>
-    </body>
-</html>
+    </div>
+</BaseLayout>

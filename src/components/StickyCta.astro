@@ -4,20 +4,22 @@ const { href = "/join", label = "Unlock full access", subtext } = Astro.props;
 ---
 
 <div id="stickyCta" class="sticky" aria-hidden="true">
-    <a class="btn" href={href}>{label}</a>
+    <a class="btn" href={href} data-track="sticky_cta" data-track-label={label}>{label}</a>
     {subtext && <div class="sub">{subtext}</div>}
 </div>
 
 <script>
     const el = document.getElementById("stickyCta");
-    const showAt = 240; // px scroll
-    const onScroll = () => {
-        const show = window.scrollY > showAt;
-        el.setAttribute("aria-hidden", String(!show));
-        el.classList.toggle("show", show);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    if (el) {
+        const showAt = 240; // px scroll
+        const onScroll = () => {
+            const show = window.scrollY > showAt;
+            el.setAttribute("aria-hidden", String(!show));
+            el.classList.toggle("show", show);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+    }
 </script>
 
 <style>

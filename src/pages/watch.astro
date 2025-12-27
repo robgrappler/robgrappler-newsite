@@ -1,4 +1,5 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import HeaderBar from "../components/HeaderBar.astro";
 import StickyCta from "../components/StickyCta.astro";
 import PreviewGrid from "../components/PreviewGrid.astro";
@@ -15,14 +16,8 @@ const items = Array.from({ length: 24 }).map((_, i) => ({
 }));
 ---
 
-<html lang="en">
-    <head
-        ><meta charset="utf-8" /><meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-        /></head
-    >
-    <body>
+<BaseLayout title="Preview Library | Robgrappler" description="Preview library. Full matches are locked.">
+    <div class="pt-24">
         <HeaderBar text="Previews only. Full matches are locked." />
 
         <div class="wrap">
@@ -36,24 +31,18 @@ const items = Array.from({ length: 24 }).map((_, i) => ({
             label="Unlock full access"
             subtext="Full matches are locked."
         />
+    </div>
 
-        <style>
-            body {
-                margin: 0;
-                background: #050505;
-                color: #f2f2f2;
-                font-family: ui-sans-serif, system-ui;
-            }
-            .wrap {
-                max-width: 980px;
-                margin: 0 auto;
-                padding: 6px 16px 0;
-            }
-            .label {
-                font-size: 12px;
-                opacity: 0.78;
-                padding: 8px 0 4px;
-            }
-        </style>
-    </body>
-</html>
+    <style>
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 6px 16px 0;
+        }
+        .label {
+            font-size: 12px;
+            opacity: 0.78;
+            padding: 8px 0 4px;
+        }
+    </style>
+</BaseLayout>

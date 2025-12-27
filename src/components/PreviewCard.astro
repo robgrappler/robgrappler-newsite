@@ -9,6 +9,8 @@ const { item } = Astro.props;
         class="media"
         href="/join"
         aria-label={`Open access to view: ${item.title}`}
+        data-track="preview_unlock"
+        data-track-label={item.title}
     >
         <img src={item.thumb} alt={item.title} loading="lazy" />
         {

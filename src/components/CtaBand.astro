@@ -4,7 +4,7 @@ const { href = "/join", title, sub } = Astro.props;
 ---
 
 <div class="band">
-    <a href={href} class="inner">
+    <a href={href} class="inner" data-track="cta_band" data-track-label={title}>
         <div class="t">{title}</div>
         <div class="s">{sub}</div>
     </a>

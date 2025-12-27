@@ -1,36 +1,43 @@
-<!-- LEGAL PAGES (Simulated Routing for SPA) --><!-- Privacy Policy -->
-<section
-    id="privacy"
-    class="page-section min-h-screen pt-24 pb-12 bg-brand-black"
->
-    <div class="max-w-3xl mx-auto px-4">
-        <h1
-            class="text-4xl font-bebas text-brand-bone mb-8 border-b border-brand-gold pb-4"
-        >
-            Privacy Policy
-        </h1>
-        <div class="prose prose-invert prose-sm text-gray-400">
-            <h3 class="text-white font-bold mt-6 mb-2">1. Data Collection</h3>
-            <p>
-                We collect basic usage data (IP, browser type) to optimize the
-                site. If you buy something, we store your email to deliver the
-                product. That's it.
-            </p>
-            <h3 class="text-white font-bold mt-6 mb-2">2. Payments</h3>
-            <p>
-                We do not store credit card details. All transactions are
-                processed via Stripe. We only see the last 4 digits.
-            </p>
-            <h3 class="text-white font-bold mt-6 mb-2">3. Your Rights</h3>
-            <p>
-                Want us to delete your account? Email support@robgrappler.io and
-                we will wipe your data within 48 hours.
-            </p>
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Privacy Policy | Robgrappler" description="Robgrappler privacy policy.">
+    <!-- LEGAL PAGES (Simulated Routing for SPA) --><!-- Privacy Policy -->
+    <section
+        id="privacy"
+        class="page-section min-h-screen pt-24 pb-12 bg-brand-black"
+    >
+        <div class="max-w-3xl mx-auto px-4">
+            <h1
+                class="text-4xl font-bebas text-brand-bone mb-8 border-b border-brand-gold pb-4"
+            >
+                Privacy Policy
+            </h1>
+            <div class="prose prose-invert prose-sm text-gray-400">
+                <h3 class="text-white font-bold mt-6 mb-2">1. Data Collection</h3>
+                <p>
+                    We collect basic usage data (IP, browser type) to optimize the
+                    site. If you buy something, we store your email to deliver the
+                    product. That's it.
+                </p>
+                <h3 class="text-white font-bold mt-6 mb-2">2. Payments</h3>
+                <p>
+                    We do not store credit card details. All transactions are
+                    processed via Stripe. We only see the last 4 digits.
+                </p>
+                <h3 class="text-white font-bold mt-6 mb-2">3. Your Rights</h3>
+                <p>
+                    Want us to delete your account? Email support@robgrappler.io and
+                    we will wipe your data within 48 hours.
+                </p>
+            </div>
+            <a
+                href="/"
+                data-track="footer_back_home"
+                class="mt-8 inline-block text-brand-gold hover:text-white font-bold"
+                >&larr; Back to Home</a
+            >
         </div>
-        <a
-            href="/"
-            class="mt-8 inline-block text-brand-gold hover:text-white font-bold"
-            >&larr; Back to Home</a
-        >
-    </div>
-</section>
+    </section>
+</BaseLayout>

@@ -13,12 +13,15 @@ const links = [
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse group">
       <!-- Logo Container with Fallback Logic -->
       <div class="relative w-10 h-10 flex-shrink-0">
-        <img
-          src="/images/image_1.png"
-          alt="Robgrappler Logo"
-          class="absolute inset-0 w-full h-full object-contain rotate-3 group-hover:rotate-0 transition-transform duration-300 drop-shadow-[0_0_5px_rgba(245,194,101,0.5)] z-10"
-          onerror="this.style.display='none'; document.getElementById('fallback-logo')?.classList.remove('hidden');"
-        />
+        <picture>
+          <source type="image/avif" srcset="/images/R-logo.avif" />
+          <img
+            src="/images/image_1.png"
+            alt="Robgrappler Logo"
+            class="absolute inset-0 w-full h-full object-contain rotate-3 group-hover:rotate-0 transition-transform duration-300 drop-shadow-[0_0_5px_rgba(245,194,101,0.5)] z-10"
+            onerror="this.style.display='none'; document.getElementById('fallback-logo')?.classList.remove('hidden');"
+          />
+        </picture>
         <div
           id="fallback-logo"
           class="hidden w-full h-full bg-brand-gold flex items-center justify-center rounded-sm rotate-3 group-hover:rotate-0 transition-transform duration-300 absolute inset-0"
@@ -47,6 +50,8 @@ const links = [
         type="button"
         class="border border-brand-gold/50 bg-brand-black/80 text-brand-gold px-3 py-1 text-sm font-bold tracking-widest uppercase hover:bg-brand-gold hover:text-black transition-colors flex items-center gap-2"
         aria-label="Toggle Language"
+        aria-pressed="false"
+        data-track="lang_toggle"
       >
         <span class="lang-en">🇺🇸</span>
         <span class="lang-es hidden">🇲🇽</span>
@@ -55,6 +60,7 @@ const links = [
       <!-- NAVBAR BUTTON -->
       <a
         href="https://joinmy.fans/robgrappler"
+        data-track="cta_nav_enter"
         class="btn-brutal brutal-shadow-white btn-striped group relative inline-flex items-center justify-center bg-rg-gold px-6 py-2 text-[11px] font-bold tracking-[0.2em] uppercase text-black transition-all"
       >
         <span class="relative z-10">
@@ -83,6 +89,7 @@ const links = [
           <li>
             <a
               href={l.href}
+              data-track={`nav_${l.href.replace('#', '')}`}
               class="block py-2 px-3 text-zinc-400 rounded hover:bg-gray-800 md:hover:bg-transparent md:hover:text-white md:p-0 font-body text-[11px] font-bold uppercase tracking-[0.25em] transition-colors"
             >
               <span class="lang-en">{l.label_en}</span>
@@ -102,23 +109,58 @@ const links = [
   if (toggle && menu) {
     toggle.addEventListener('click', () => {
       menu.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', menu.classList.contains('hidden') ? 'false' : 'true');
     });
   }
 
   const langToggle = document.getElementById('lang-toggle');
   if (langToggle) {
-    let isSpanish = false;
-    langToggle.addEventListener('click', () => {
-      isSpanish = !isSpanish;
+    const getInitialLang = () => {
+      const params = new URLSearchParams(window.location.search);
+      const qp = (params.get('lang') || '').toLowerCase();
+      if (qp === 'en') return 'en';
+      if (qp === 'es' || qp === 'es-mx' || qp === 'es_mx' || qp.startsWith('es-')) return 'es';
+      const stored = (window.localStorage.getItem('rg_lang') || '').toLowerCase();
+      if (stored === 'es') return 'es';
+      return 'en';
+    };
+
+    const applyLang = (lang) => {
+      const isSpanish = lang === 'es';
       const enElements = document.querySelectorAll('.lang-en');
       const esElements = document.querySelectorAll('.lang-es');
-
       if (isSpanish) {
         enElements.forEach((el) => el.classList.add('hidden'));
         esElements.forEach((el) => el.classList.remove('hidden'));
       } else {
         enElements.forEach((el) => el.classList.remove('hidden'));
         esElements.forEach((el) => el.classList.add('hidden'));
+      }
+
+      document.documentElement.setAttribute('lang', isSpanish ? 'es-MX' : 'en');
+      langToggle.setAttribute('aria-pressed', isSpanish ? 'true' : 'false');
+      langToggle.setAttribute('aria-label', isSpanish ? 'Cambiar idioma' : 'Toggle Language');
+      window.localStorage.setItem('rg_lang', isSpanish ? 'es' : 'en');
+
+      const live = document.getElementById('lang-live');
+      if (live) live.textContent = isSpanish ? 'Idioma: Español' : 'Language: English';
+
+      document.dispatchEvent(new CustomEvent('rg:lang', { detail: { lang: isSpanish ? 'es' : 'en' } }));
+
+      const params = new URLSearchParams(window.location.search);
+      params.set('lang', isSpanish ? 'es-mx' : 'en');
+      const newUrl = `${window.location.pathname}?${params.toString()}${window.location.hash}`;
+      window.history.replaceState({}, '', newUrl);
+    };
+
+    let lang = getInitialLang();
+    applyLang(lang);
+
+    langToggle.addEventListener('click', () => {
+      lang = lang === 'es' ? 'en' : 'es';
+      applyLang(lang);
+      if (typeof window.rgTrack === 'function') {
+        window.rgTrack('lang_toggle', { lang });
       }
     });
   }

@@ -1,5 +1,6 @@
 ---
 // src/pages/in-construction.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
 const socials = [
     {
         label: "WatchFighters",
@@ -10,58 +11,62 @@ const socials = [
 ];
 ---
 
-<section class="relative max-w-2xl px-4 text-center">
-    <!-- background glow just for flavor -->
-    <div class="pointer-events-none absolute inset-0 -z-10">
-        <div
-            class="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[#F5C265]/12 blur-3xl"
-        >
+<BaseLayout title="In Construction | Robgrappler" description="Robgrappler site is under construction.">
+    <section class="relative max-w-2xl px-4 text-center mx-auto py-24">
+        <!-- background glow just for flavor -->
+        <div class="pointer-events-none absolute inset-0 -z-10">
+            <div
+                class="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[#F5C265]/12 blur-3xl"
+            >
+            </div>
         </div>
-    </div>
 
-    <p
-        class="mb-4 text-xs font-semibold tracking-[0.35em] text-[#F5C265] uppercase"
-    >
-        Robgrappler
-    </p>
+        <p
+            class="mb-4 text-xs font-semibold tracking-[0.35em] text-[#F5C265] uppercase"
+        >
+            Robgrappler
+        </p>
 
-    <h1
-        class="font-display text-4xl sm:text-5xl md:text-6xl tracking-tight text-slate-50 uppercase"
-    >
-        Underground Grappling Is Loading
-    </h1>
+        <h1
+            class="font-display text-4xl sm:text-5xl md:text-6xl tracking-tight text-slate-50 uppercase"
+        >
+            Underground Grappling Is Loading
+        </h1>
 
-    <p class="mt-5 text-sm sm:text-base text-slate-300/85">
-        The full Robgrappler site isn’t live yet, but the matches and bruises
-        are. Follow the channels below to catch new drops, previews, and full
-        wars as they go up.
-    </p>
+        <p class="mt-5 text-sm sm:text-base text-slate-300/85">
+            The full Robgrappler site isn’t live yet, but the matches and bruises
+            are. Follow the channels below to catch new drops, previews, and full
+            wars as they go up.
+        </p>
 
-    <p class="mt-4 text-xs uppercase tracking-[0.22em] text-slate-500">
-        Full Site Launching Soon
-    </p>
+        <p class="mt-4 text-xs uppercase tracking-[0.22em] text-slate-500">
+            Full Site Launching Soon
+        </p>
 
-    <div class="mt-8 flex flex-wrap justify-center gap-4">
-        {
-            socials.map((s) => (
-                <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="inline-flex items-center justify-center rounded-full border border-[#F5C265]/80 
-               px-6 py-2 text-[11px] font-semibold uppercase tracking-[0.22em]
-               text-[#F5C265] bg-transparent 
-               hover:bg-[#F5C265]/15 hover:text-[#FFE6B5]
-               hover:shadow-[0_0_12px_rgba(245,194,101,0.35)]
-               transition-all duration-200"
-                >
-                    {s.label}
-                </a>
-            ))
-        }
-    </div>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+            {
+                socials.map((s) => (
+                    <a
+                        href={s.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        data-track="social_out"
+                        data-track-label={s.label}
+                        class="inline-flex items-center justify-center rounded-full border border-[#F5C265]/80 
+                   px-6 py-2 text-[11px] font-semibold uppercase tracking-[0.22em]
+                   text-[#F5C265] bg-transparent 
+                   hover:bg-[#F5C265]/15 hover:text-[#FFE6B5]
+                   hover:shadow-[0_0_12px_rgba(245,194,101,0.35)]
+                   transition-all duration-200"
+                    >
+                        {s.label}
+                    </a>
+                ))
+            }
+        </div>
 
-    <p class="mt-10 text-[11px] text-slate-500 tracking-[0.16em] uppercase">
-        Real pressure. No fake drama.
-    </p>
-</section>
+        <p class="mt-10 text-[11px] text-slate-500 tracking-[0.16em] uppercase">
+            Real pressure. No fake drama.
+        </p>
+    </section>
+</BaseLayout>
