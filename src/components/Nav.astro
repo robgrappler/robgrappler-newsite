@@ -1,21 +1,15 @@
 ---
 const links = [
-  { href: "/", label: "Home" },
-  {
-    href: "https://www.watchfighters.com/channels/Robgrappler",
-    label: "Watchfighters",
-  },
-  { href: "https://joinmy.fans/robgrappler", label: "Faphouse" },
+  { href: "#matches", label_en: "Matches", label_es: "Combates" },
+  { href: "#pricing", label_en: "Subscriptions", label_es: "Suscripciones" },
+  { href: "#about", label_en: "About", label_es: "Acerca de" },
+  { href: "#faq", label_en: "FAQ", label_es: "Preguntas" },
 ];
 ---
 
 <!-- Navigation -->
-<nav
-  class="fixed w-full z-40 top-0 start-0 border-b border-white/10 bg-brand-black/90 backdrop-blur-md"
->
-  <div
-    class="max-w-7xl mx-auto flex flex-wrap items-center justify-between mx-auto p-4"
-  >
+<nav class="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-brand-black/90 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between p-4">
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse group">
       <!-- Logo Container with Fallback Logic -->
       <div class="relative w-10 h-10 flex-shrink-0">
@@ -23,51 +17,53 @@ const links = [
           src="/images/image_1.png"
           alt="Robgrappler Logo"
           class="absolute inset-0 w-full h-full object-contain rotate-3 group-hover:rotate-0 transition-transform duration-300 drop-shadow-[0_0_5px_rgba(245,194,101,0.5)] z-10"
-          onerror="this.style.display='none'; document.getElementById('fallback-logo').classList.remove('hidden');"
+          onerror="this.style.display='none'; document.getElementById('fallback-logo')?.classList.remove('hidden');"
         />
         <div
           id="fallback-logo"
           class="hidden w-full h-full bg-brand-gold flex items-center justify-center rounded-sm rotate-3 group-hover:rotate-0 transition-transform duration-300 absolute inset-0"
         >
-          <span class="font-bebas text-brand-black text-2xl font-bold pt-1"
-            >R</span
-          >
+          <span class="font-bebas text-brand-black text-2xl font-bold pt-1">R</span>
         </div>
       </div>
 
-      <span
-        class="self-center text-2xl font-tech font-bold whitespace-nowrap text-brand-bone tracking-wider"
-      >
-        <span class="transition-colors group-hover:text-brand-gold">Rob</span
-        >grappler
+      <span class="self-center text-2xl font-tech font-bold whitespace-nowrap text-brand-bone tracking-wider">
+        <span class="transition-colors group-hover:text-brand-gold">Rob</span>grappler
       </span>
     </a>
 
-    <div
-      class="flex md:order-2 space-x-3 md:space-x-4 rtl:space-x-reverse items-center"
-    >
+    <div class="flex md:order-2 space-x-3 md:space-x-4 rtl:space-x-reverse items-center">
       <!-- Status Indicator: "Live" feel -->
       <div class="hidden lg:flex items-center mr-6 gap-2">
-        <div
-          class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse shadow- D]"
-        >
-        </div>
-        <span
-          class="text-[9px] uppercase font-bold text-zinc-500 tracking-[0.2em]"
-          >System Online</span
-        >
+        <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
+        <span class="text-[9px] uppercase font-bold text-zinc-500 tracking-[0.2em]">
+          <span class="lang-en">System Online</span>
+          <span class="lang-es hidden">Sistema en línea</span>
+        </span>
       </div>
+
+      <button
+        id="lang-toggle"
+        type="button"
+        class="border border-brand-gold/50 bg-brand-black/80 text-brand-gold px-3 py-1 text-sm font-bold tracking-widest uppercase hover:bg-brand-gold hover:text-black transition-colors flex items-center gap-2"
+        aria-label="Toggle Language"
+      >
+        <span class="lang-en">🇺🇸</span>
+        <span class="lang-es hidden">🇲🇽</span>
+      </button>
 
       <!-- NAVBAR BUTTON -->
       <a
         href="https://joinmy.fans/robgrappler"
         class="btn-brutal brutal-shadow-white btn-striped group relative inline-flex items-center justify-center bg-rg-gold px-6 py-2 text-[11px] font-bold tracking-[0.2em] uppercase text-black transition-all"
       >
-        <span class="relative z-10">Enter The Mat</span>
+        <span class="relative z-10">
+          <span class="lang-en">Enter The Mat</span>
+          <span class="lang-es hidden">Entra al Tatami</span>
+        </span>
       </a>
 
       <button
-        data-collapse-toggle="navbar-sticky"
         type="button"
         class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600"
         aria-controls="navbar-sticky"
@@ -75,59 +71,55 @@ const links = [
         id="menu-toggle"
       >
         <span class="sr-only">Open main menu</span>
-        <svg
-          class="w-5 h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 17 14"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 1h15M1 7h15M1 13h15"></path>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"></path>
         </svg>
       </button>
     </div>
 
-    <div
-      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-      id="navbar-sticky"
-    >
-      <ul
-        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-800 rounded-lg bg-brand-purple/50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent"
-      >
-        <li>
-          <a
-            href="#matches"
-            class="block py-2 px-3 text-zinc-400 rounded hover:bg-gray-800 md:hover:bg-transparent md:hover:text-white md:p-0 font-body text-[11px] font-bold uppercase tracking-[0.25em] transition-colors"
-            >Matches</a
-          >
-        </li>
-        <li>
-          <a
-            href="#pricing"
-            class="block py-2 px-3 text-zinc-400 rounded hover:bg-gray-800 md:hover:bg-transparent md:hover:text-white md:p-0 font-body text-[11px] font-bold uppercase tracking-[0.25em] transition-colors"
-            >Subscriptions</a
-          >
-        </li>
-        <li>
-          <a
-            href="#about"
-            class="block py-2 px-3 text-zinc-400 rounded hover:bg-gray-800 md:hover:bg-transparent md:hover:text-white md:p-0 font-body text-[11px] font-bold uppercase tracking-[0.25em] transition-colors"
-            >About</a
-          >
-        </li>
-        <li>
-          <a
-            href="#faq"
-            class="block py-2 px-3 text-zinc-400 rounded hover:bg-gray-800 md:hover:bg-transparent md:hover:text-white md:p-0 font-body text-[11px] font-bold uppercase tracking-[0.25em] transition-colors"
-            >FAQ</a
-          >
-        </li>
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+      <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-800 rounded-lg bg-brand-purple/50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
+        {links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class="block py-2 px-3 text-zinc-400 rounded hover:bg-gray-800 md:hover:bg-transparent md:hover:text-white md:p-0 font-body text-[11px] font-bold uppercase tracking-[0.25em] transition-colors"
+            >
+              <span class="lang-en">{l.label_en}</span>
+              <span class="lang-es hidden">{l.label_es}</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </div>
 </nav>
+
+<script is:inline>
+  // Mobile menu toggle (no dependencies)
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('navbar-sticky');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  }
+
+  const langToggle = document.getElementById('lang-toggle');
+  if (langToggle) {
+    let isSpanish = false;
+    langToggle.addEventListener('click', () => {
+      isSpanish = !isSpanish;
+      const enElements = document.querySelectorAll('.lang-en');
+      const esElements = document.querySelectorAll('.lang-es');
+
+      if (isSpanish) {
+        enElements.forEach((el) => el.classList.add('hidden'));
+        esElements.forEach((el) => el.classList.remove('hidden'));
+      } else {
+        enElements.forEach((el) => el.classList.remove('hidden'));
+        esElements.forEach((el) => el.classList.add('hidden'));
+      }
+    });
+  }
+</script>

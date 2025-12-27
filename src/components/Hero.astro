@@ -3,15 +3,25 @@
 ---
 
 <section
-  class="sticky top-0 z-0 overflow-hidden border-b border-rg-purpleDeep/60 bg-rg-black"
+  class="fixed top-0 left-0 right-0 z-0 overflow-hidden border-b border-rg-purpleDeep/60 bg-rg-black h-screen"
 >
-  <!-- Background image + gradients -->
-  <div class="absolute inset-0">
-    <div
-      class="absolute inset-0 bg-[url('/images/mainpic.webp')] bg-cover bg-[50%_15%] opacity-70 animate-slow-scan"
+  <!-- Background video + gradients -->
+  <div class="absolute inset-0 bg-blue-500">
+    <video
+      id="hero-video"
+      class="absolute inset-0 w-full h-full object-cover z-10"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/media/HERO_POSTER.jpg"
       aria-hidden="true"
+      style="background: red;"
     >
-    </div>
+      <source src="/media/HERO_LOOP_720p.mp4" type="video/mp4">
+      <source src="/media/HERO_LOOP_1080p.mp4" type="video/mp4">
+      <source src="/media/HERO_LOOP_1440p.mp4" type="video/mp4">
+    </video>
     <!-- Textured Overlay -->
     <div
       class="absolute inset-0 opacity-30 mix-blend-soft-light"
@@ -34,7 +44,7 @@
   <div class="relative">
     <div class="rg-scanline"></div>
     <div
-      class="rg-shell min-h-[100dvh] flex flex-col items-center justify-between pt-4 pb-10 sm:pt-24 sm:pb-24 text-center"
+      class="rg-shell h-screen flex flex-col items-center justify-between text-center"
     >
       <!-- Top Content (Title) -->
       <div
@@ -145,3 +155,115 @@
 </section>
 
 <style></style>
+
+<script>
+  console.log('Hero.astro script started');
+  // Device and connection detection for optimal video selection
+  function selectOptimalVideo() {
+    const video = document.getElementById('hero-video') as HTMLVideoElement;
+    console.log('Video element found:', !!video);
+    if (!video) return;
+
+    // Get screen dimensions for device detection
+    const screenWidth = window.screen.width;
+    const screenHeight = window.screen.height;
+    const pixelRatio = window.devicePixelRatio || 1;
+    
+    // Get connection information if available
+    const nav = navigator as any;
+    const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
+    let connectionSpeed = '4g'; // default to fast connection
+    let saveData = false;
+    
+    if (connection) {
+      // Determine connection quality
+      if (connection.saveData) {
+        saveData = true;
+      } else if (connection.effectiveType) {
+        connectionSpeed = connection.effectiveType; // 'slow-2g', '2g', '3g', '4g'
+      } else if (connection.downlink) {
+        // Fallback: use downlink speed in Mbps
+        const downlink = connection.downlink;
+        if (downlink < 0.5) connectionSpeed = '2g';
+        else if (downlink < 1.5) connectionSpeed = '3g';
+        else connectionSpeed = '4g';
+      }
+    }
+
+    // Device detection based on screen size and pixel density
+    let videoQuality = '720p';
+    
+    // Check for high-resolution displays
+    const effectiveWidth = screenWidth * pixelRatio;
+    const effectiveHeight = screenHeight * pixelRatio;
+    
+    if (saveData) {
+      // Always use lowest quality on data saver mode
+      videoQuality = '720p';
+    } else if (connectionSpeed === 'slow-2g' || connectionSpeed === '2g') {
+      // Use lowest quality for slow connections
+      videoQuality = '720p';
+    } else if (connectionSpeed === '3g') {
+      // Medium quality for 3g
+      if (effectiveWidth >= 1920 || effectiveHeight >= 1080) {
+        videoQuality = '1080p';
+      } else {
+        videoQuality = '720p';
+      }
+    } else {
+      // Fast connection (4g+) - select based on device capabilities
+      if (effectiveWidth >= 2560 || effectiveHeight >= 1440) {
+        videoQuality = '1440p';
+      } else if (effectiveWidth >= 1920 || effectiveHeight >= 1080) {
+        videoQuality = '1080p';
+      } else {
+        videoQuality = '720p';
+      }
+    }
+
+    // Mobile device detection for additional optimization
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile && connectionSpeed !== '4g') {
+      videoQuality = '720p'; // Conservative for mobile on slower connections
+    }
+
+    // Update video source by reordering the source elements
+    const sources = video.querySelectorAll('source');
+    const videoPath = `/media/HERO_LOOP_${videoQuality}.mp4`;
+    console.log('Video selected:', videoQuality, 'Path:', videoPath);
+    console.log('Available sources:', Array.from(sources).map(s => s.src));
+
+    // Find and move the selected source to the top
+    let sourceFound = false;
+    sources.forEach(source => {
+      if (!sourceFound && source.src.includes(videoQuality)) {
+        video.insertBefore(source, video.firstChild);
+        video.load(); // Reload video with new source order
+        sourceFound = true;
+        console.log('Source reordered and video loaded');
+      }
+    });
+
+    // Try to play the video
+    video.play().catch((error: any) => {
+      console.warn('Video autoplay failed:', error);
+    });
+  }
+
+  // Initialize video selection when DOM is ready
+  document.addEventListener('DOMContentLoaded', selectOptimalVideo);
+  
+  // Re-evaluate on window resize (for device orientation changes)
+  let resizeTimeout: number;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = window.setTimeout(selectOptimalVideo, 500);
+  });
+
+  // Listen for connection changes
+  const nav = navigator as any;
+  const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
+  if (connection) {
+    connection.addEventListener('change', selectOptimalVideo);
+  }
+</script>

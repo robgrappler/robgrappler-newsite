@@ -5,20 +5,11 @@ import SectionShell from "../components/SectionShell.astro";
 
 <BaseLayout title="Robgrappler | Enter The Mat">
     <div class="relative">
-        
-        <!-- Language Toggle -->
-        <div class="absolute top-6 right-6 z-50">
-            <button 
-                id="lang-toggle"
-                class="border border-brand-gold/50 bg-brand-black/80 text-brand-gold px-3 py-1 text-xs font-bold tracking-widest uppercase hover:bg-brand-gold hover:text-black transition-colors"
-            >
-                [ EN / ES ]
-            </button>
-        </div>
 
         <!-- HERO SECTION -->
-        <section class="relative min-h-[90vh] flex items-center bg-brand-black overflow-hidden">
-            
+        <section
+            class="hero-pin relative min-h-[90vh] flex items-center bg-brand-black overflow-hidden"
+        >
             <!-- Background Image & Gradients -->
             <div class="absolute inset-0 z-0">
                 <img
@@ -27,98 +18,257 @@ import SectionShell from "../components/SectionShell.astro";
                     loading="eager"
                     decoding="async"
                     fetchpriority="high"
-                    class="object-cover object-[80%35%] w-full h-full opacity-50 animate-slow-scan"
+                    class="hero-kenburns object-cover object-[78%_28%] w-full h-full opacity-55 scale-[1.02]"
                     onerror="this.style.display='none'; document.getElementById('hero-fallback').classList.remove('hidden');"
                 />
+                <!-- HERO OVERLAY (RAW FOOTAGE LOOP) -->
+                <video
+                    id="hero-loop-atmo"
+                    class="hero-loop absolute inset-0 w-full h-full object-cover z-0 opacity-55 hidden"
+                    style="display:none"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    poster="/media/HERO_POSTER.jpg"
+                >
+                    <source
+                        src="/media/HERO_LOOP_1440p.mp4"
+                        type="video/mp4"
+                        media="(min-width: 1600px)"
+                    />
+                    <source
+                        src="/media/HERO_LOOP_1080p.mp4"
+                        type="video/mp4"
+                        media="(min-width: 900px)"
+                    />
+                    <source
+                        src="/media/HERO_LOOP_720p.mp4"
+                        type="video/mp4"
+                    />
+                </video>
+
+                <video
+                    id="hero-loop-raw"
+                    class="hero-loop absolute inset-0 w-full h-full object-cover z-0 opacity-45 hidden"
+                    style="display:none"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                >
+                    <source
+                        src="/videos/hero_DSCF2957_0300-0560.mp4"
+                        type="video/mp4"
+                    />
+                </video>
+
+                <!-- HERO MICRO-MOTION (RAW FEED) -->
+                <div class="absolute inset-0 z-5 pointer-events-none">
+                <div class="hero-microbox absolute bottom-4 right-4 md:bottom-6 md:right-6 w-[40%] md:w-1/4 h-[25%] md:h-[30%] overflow-hidden">
+                        <!-- Label -->
+                        <div class="absolute top-2 left-2 z-20">
+                            <span class="hero-microlabel">
+                                <span class="lang-en">RAW FOOTAGE</span>
+                                <span class="lang-es hidden">MATERIAL SIN FILTRO</span>
+                            </span>
+                        </div>
+
+                        <video
+                            class="hero-microvideo w-full h-full object-cover opacity-95"
+                            id="hero-micro-video"
+                            data-hero-video
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            style="object-position: 60% 40%; transform: scale(1.3);"
+                        >
+                            <source
+                                src="/media/HERO_LOOP_720p.mp4"
+                                type="video/mp4"
+                            />
+                            <source
+                                src="/media/HERO_LOOP_1080p.mp4"
+                                type="video/mp4"
+                            />
+                            <source
+                                src="/media/HERO_LOOP_1440p.mp4"
+                                type="video/mp4"
+                            />
+                        </video>
+
+                        <!-- Darken + grit overlay so it feels physical, not glassy UI -->
+                        <div class="hero-microoverlay absolute inset-0 z-10"></div>
+                    </div>
+                </div>
+
                 <div
                     id="hero-fallback"
                     class="hidden absolute inset-0 bg-gradient-to-br from-brand-purple via-brand-black to-black opacity-80"
                 >
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/60 to-transparent"></div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-brand-black/70 via-brand-black/50 to-transparent"
+                >
+                </div>
             </div>
 
             <!-- Hero Content -->
-            <div class="relative z-10 text-left mx-auto pl-6 sm:pl-12 lg:ml-28 pr-6 max-w-[42rem] mt-10">
-               <div class="flex justify-center mb-6">
-                     <div class="px-3 py-1 border border-brand-gold/30 rounded-full bg-brand-gold/5 backdrop-blur-sm">
-                        <span class="text-brand-gold text-xs font-bold tracking-[0.2em] uppercase animate-pulse-slow">
-                            <span class="lang-en">Private Match Archive // Secure</span>
-                            <span class="lang-es hidden">Archivo Privado // Seguro</span>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- TITLE BLOCK WITH SCANLINE -->
-                <div class="relative overflow-visible py-4 flex justify-center">
-                    <!-- The Laser Scanline Container -->
-                    <div class="rg-scanline pointer-events-none absolute inset-0 z-20"></div>
+            <div
+                class="relative z-10 w-full max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-[0.6fr_1.4fr] px-4"
+            >
+                <!-- Left Column: Centered Content in its own lane -->
+                <div class="lg:max-w-3xl flex flex-col items-center text-center lg:items-center lg:text-center">
                     
-                    <h1 class="block text-center text-6xl md:text-8xl lg:text-9xl font-bebas text-brand-bone leading-[0.9] mb-6 relative z-10">
-                        <!-- English Line 1 -->
-                        <span class="block lang-en glitch-text" data-text="UNDERGROUND">UNDERGROUND</span>
-                        <!-- Spanish Line 1 -->
-                        <span class="block lang-es hidden glitch-text" data-text="GRAPPLING">GRAPPLING</span>
-                        
-                        <span class="block">
-                            <!-- English Line 2 -->
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-bone to-gray-600 lang-en glitch-text" data-text="GRAPPLING">GRAPPLING</span>
-                            <!-- Spanish Line 2 -->
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-bone to-gray-600 lang-es hidden glitch-text" data-text="CLANDESTINO">CLANDESTINO</span>
-                            <!-- The Dot -->
-                            <span class="text-brand-gold drop-shadow-[0_0_15px_rgba(245,194,101,1)]">.</span>
+                    <!-- Golden Pill (Explicitly Borderless) -->
+                    <div
+                        class="inline-block mb-4 px-4 py-1.5 rounded-full bg-brand-gold/10 backdrop-blur-sm border-0 ring-0 outline-none shadow-none"
+                    >
+                        <span
+                            class="text-brand-gold text-xs font-bold tracking-[0.2em] uppercase animate-pulse-slow"
+                        >
+                            <span class="lang-en"
+                                >Private Match Archive // Secure</span
+                            >
+                            <span class="lang-es hidden"
+                                >Archivo Privado // Seguro</span
+                            >
                         </span>
-                    </h1>
-                </div>
-
-                <p class="text-gray-400 text-lg md:text-xl max-w-xl mb-10 mx-auto text-center font-light">
-                    <span class="lang-en">No scripts. No fluff. Just raw pressure and technical dominance.<br class="hidden md:block" /> Access the uncensored library.</span>
-                    <span class="lang-es hidden">Sin guiones. Sin relleno. Solo presión cruda y dominio técnico.<br class="hidden md:block" /> Accede a la biblioteca sin censura.</span>
-                </p>
-
-                <div class="flex flex-col md:flex-row gap-10 justify-center items-center md:items-center">
-                    <a href="#pricing" class="btn-brutal btn-striped brutal-shadow-white transition-all duration-300 w-full md:w-auto px-8 py-4 bg-brand-gold border-2 border-brand-gold text-brand-black font-bebas text-xl tracking-wide rounded-none hover:bg-white hover:border-white">
-                        <span class="lang-en">Watch Full Matches</span>
-                        <span class="lang-es hidden">Ver Combates</span>
-                    </a>
-                    <a href="#matches" class="btn-brutal btn-striped-light brutal-shadow-gold w-full md:w-auto px-8 py-4 border-2 border-brand-gold text-brand-bone font-bebas text-xl bg-transparent hover:bg-brand-gold hover:text-brand-black">
-                        <span class="lang-en">Browse Library</span>
-                        <span class="lang-es hidden">Explorar</span>
-                    </a>
-                </div>
-
-                <div class="mt-12 flex flex-wrap justify-center gap-8 text-gray-500 text-xs uppercase tracking-widest font-semibold">
-                    <div class="flex items-center gap-2">
-                        <span class="text-brand-gold text-xl">•</span>
-                        <span class="lang-en">No Scripts</span>
-                        <span class="lang-es hidden">Sin Guiones</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-brand-gold text-xl">•</span>
-                        <span class="lang-en">Secure Payment</span>
-                        <span class="lang-es hidden">Pago Seguro</span>
+
+                    <!-- TITLE BLOCK WITH SCANLINE -->
+                    <div class="relative overflow-visible py-4 w-fit mx-auto">
+                        <!-- The Laser Scanline Container -->
+                        <div
+                            class="rg-scanline pointer-events-none absolute inset-0 z-20"
+                        >
+                        </div>
+
+                        <h1
+                            class="hero-title block text-6xl md:text-8xl lg:text-9xl font-bebas text-brand-bone leading-[0.9] mb-6 relative z-10 drop-shadow-[0_0_25px_rgba(0,0,0,0.8)]"
+                        >
+                            <!-- English Line 1 -->
+                            <span
+                                class="block lang-en glitch-text"
+                                data-text="UNDERGROUND">UNDERGROUND</span
+                            >
+                            <!-- Spanish Line 1 -->
+                            <span
+                                class="block lang-es hidden glitch-text"
+                                data-text="GRAPPLING">GRAPPLING</span
+                            >
+
+                            <span class="block">
+                                <!-- English Line 2 -->
+                                <span
+                                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-bone to-gray-600 lang-en glitch-text"
+                                    data-text="GRAPPLING">GRAPPLING</span
+                                >
+                                <!-- Spanish Line 2 -->
+                                <span
+                                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-bone to-gray-600 lang-es hidden glitch-text"
+                                    data-text="CLANDESTINO">CLANDESTINO</span
+                                >
+                                <!-- The Dot (No Glitch on Gold) -->
+                                <span class="text-brand-gold hero-dot no-glitch"
+                                    >.</span
+                                >
+                            </span>
+                        </h1>
                     </div>
-                     <div class="flex items-center gap-2">
-                        <span class="text-brand-gold text-xl">•</span>
-                        <span class="lang-en">Cancel Anytime</span>
-                        <span class="lang-es hidden">Cancela En Cualquier Momento</span>
+
+                    <!-- Subtitle: IBM Plex Sans Condensed for cold, technical readability -->
+                    <p
+                        class="text-gray-400 text-lg md:text-xl max-w-lg mb-10 font-plex-condensed uppercase tracking-[0.12em] drop-shadow-md mx-auto"
+                    >
+                        <span class="lang-en"
+                            >No scripts. No fluff. Just raw pressure and
+                            technical dominance.<br class="hidden md:block" /> Access
+                            the uncensored library.</span
+                        >
+                        <span class="lang-es hidden"
+                            >Sin guiones. Sin relleno. Solo presión cruda y
+                            dominio técnico.<br class="hidden md:block" /> Accede a
+                            la biblioteca sin censura.</span
+                        >
+                    </p>
+
+                    <div
+                        class="flex flex-col md:flex-row gap-6 justify-center items-center w-full"
+                    >
+                        <a
+                            href="#pricing"
+                            class="btn-brutal btn-striped w-full md:w-auto px-8 py-4 bg-brand-gold border-2 border-brand-gold text-brand-black font-bebas text-xl tracking-wide shadow-[6px_6px_0px_0px_#FFFFFF] hover:shadow-[2px_2px_0px_0px_#FFFFFF] hover:translate-x-[4px] hover:translate-y-[4px]"
+                        >
+                            <span class="lang-en">Watch Full Matches</span>
+                            <span class="lang-es hidden">Ver Combates</span>
+                        </a>
+                        <a
+                            href="#matches"
+                            class="btn-brutal btn-striped-light w-full md:w-auto px-8 py-4 border-2 border-brand-gold text-brand-bone font-bebas text-xl bg-transparent shadow-[6px_6px_0px_0px_#F5C265] hover:bg-brand-gold hover:text-brand-black hover:shadow-[2px_2px_0px_0px_#FFFFFF] hover:translate-x-[4px] hover:translate-y-[4px]"
+                        >
+                            <span class="lang-en">Browse Library</span>
+                            <span class="lang-es hidden">Explorar</span>
+                        </a>
+                    </div>
+
+                    <div
+                        class="mt-12 flex flex-wrap justify-center gap-8 text-gray-500 text-xs uppercase tracking-widest font-semibold"
+                    >
+                        <div class="flex items-center gap-2">
+                            <span class="text-brand-gold text-xl">•</span>
+                            <span class="lang-en">No Scripts</span>
+                            <span class="lang-es hidden">Sin Guiones</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-brand-gold text-xl">•</span>
+                            <span class="lang-en">Secure Payment</span>
+                            <span class="lang-es hidden">Pago Seguro</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-brand-gold text-xl">•</span>
+                            <span class="lang-en">Cancel Anytime</span>
+                            <span class="lang-es hidden"
+                                >Cancela en cualquier momento</span
+                            >
+                        </div>
                     </div>
                 </div>
+                <!-- Empty Column for Face -->
+                <div class="hidden lg:block"></div>
             </div>
         </section>
 
-        <!-- FEATURED MATCHES -->
-        <section class="relative z-10 border-t border-brand-purple/60 bg-brand-black">
+        <div class="hero-cover">
+            <!-- FEATURED MATCHES -->
+            <section
+                class="relative z-10 border-t border-brand-purple/60 bg-brand-black"
+            >
             <SectionShell
                 id="matches"
-                eyebrow="Matches"
-                heading="Featured matches"
-                kicker="Latest uploads from the mat. No tourists, no choreography—just pressure."
                 sectionClass="pt-16 pb-20 sm:pt-20 sm:pb-24"
             >
+                <span slot="eyebrow">
+                    <span class="lang-en">Matches</span>
+                    <span class="lang-es hidden">Combates</span>
+                </span>
+                <span slot="heading">
+                    <span class="lang-en">Featured matches</span>
+                    <span class="lang-es hidden">Combates destacados</span>
+                </span>
+                <span slot="kicker">
+                    <span class="lang-en">Latest uploads from the mat. No tourists, no choreography—just pressure.</span>
+                    <span class="lang-es hidden">Últimos lanzamientos desde el tatami. No mirones, sin coreografía—solo presión.</span>
+                </span>
                 <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {/* Match 1 */}
-                    <div class="group bg-[#0A0A10] border border-white/10 rounded-none flex flex-col h-full transition-all duration-300 hover:border-brand-gold/50">
+                    <div
+                        class="group bg-[#0A0A10] border border-white/10 rounded-none flex flex-col h-full transition-all duration-300 hover:border-brand-gold/50"
+                    >
                         <div class="relative aspect-video overflow-hidden">
                             <img
                                 src="/images/thumb_brutal.jpg"
@@ -127,33 +277,61 @@ import SectionShell from "../components/SectionShell.astro";
                                 decoding="async"
                                 class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
                             />
-                            <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"></div>
-                            <div class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200 shadow-[2px_2px_0px_0px_#000]">
+                            <div
+                                class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"
+                            >
+                            </div>
+                            <div
+                                class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200 shadow-[2px_2px_0px_0px_#000]"
+                            >
                                 24:10
                             </div>
-                            <div class="absolute top-2 right-2 bg-brand-gold text-brand-black text-[0.6rem] font-bold px-2 py-1 rounded-none shadow-[2px_2px_0px_0px_#000] uppercase tracking-wider">
-                                New release
+                            <div
+                                class="absolute top-2 right-2 bg-brand-gold text-brand-black text-[0.6rem] font-bold px-2 py-1 rounded-none shadow-[2px_2px_0px_0px_#000] uppercase tracking-wider"
+                            >
+                                <span class="lang-en">New release</span>
+                                <span class="lang-es hidden">Estreno</span>
                             </div>
                         </div>
                         <div class="flex flex-1 flex-col p-6">
-                            <div class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase mb-4">
-                                <span class="border border-zinc-700 px-2 py-1 text-zinc-400">No holds barred</span>
-                                <span class="btn-striped-light border border-rg-red/60 px-2 py-1 text-rg-red">Submission only</span>
+                            <div
+                                class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase mb-4"
+                            >
+                                <span
+                                    class="border border-zinc-700 px-2 py-1 text-zinc-400"
+                                    ><span class="lang-en">No holds barred</span><span class="lang-es hidden">Sin reglas</span></span
+                                >
+                                <span
+                                    class="btn-striped-light border border-rg-red/60 px-2 py-1 text-rg-red"
+                                    ><span class="lang-en">Submission only</span><span class="lang-es hidden">Solo sumisiones</span></span
+                                >
                             </div>
-                            <h3 class="text-2xl font-bebas text-brand-bone mb-2 group-hover:text-brand-gold transition-colors uppercase">
-                                Robgrappler vs Nocturmex 3
+                            <h3
+                                class="text-2xl font-bebas text-brand-bone mb-2 group-hover:text-brand-gold transition-colors uppercase"
+                            >
+                                <span class="lang-en">Robgrappler vs Nocturmex 3</span>
+                                <span class="lang-es hidden">Robgrappler vs Nocturmex 3</span>
                             </h3>
                             <p class="text-gray-400 text-sm mb-6 line-clamp-2">
-                                Brutal back‑and‑forth. Two powerful wrestlers collide in a relentless, sweat‑drenched war of attrition.
+                                <span class="lang-en">Brutal back‑and‑forth. Two powerful wrestlers collide in a relentless, sweat‑drenched war of attrition.</span>
+                                <span class="lang-es hidden">Ida y vuelta brutal. Dos luchadores poderosos chocan en una guerra de desgaste empapada en sudor.</span>
                             </p>
-                            <a href="https://view.wf/v/jxdekpgw" target="_blank" rel="noreferrer" class="btn-brutal brutal-shadow-white mt-auto w-full py-3 bg-brand-gold text-brand-black font-bebas text-lg tracking-wide rounded-none border border-brand-gold transition-all duration-200 text-center">
-                                Watch match
+                            <a
+                                href="https://view.wf/v/jxdekpgw"
+                                target="_blank"
+                                rel="noreferrer"
+                                class="btn-brutal brutal-shadow-white mt-auto w-full py-3 bg-brand-gold text-brand-black font-bebas text-lg tracking-wide rounded-none border border-brand-gold transition-all duration-200 text-center"
+                            >
+                                <span class="lang-en">Watch match</span>
+                                <span class="lang-es hidden">Ver combate</span>
                             </a>
                         </div>
                     </div>
 
                     {/* Match 2 */}
-                    <div class="group bg-[#0A0A10] border border-white/10 rounded-none flex flex-col h-full transition-all duration-300 hover:border-brand-gold/50">
+                    <div
+                        class="group bg-[#0A0A10] border border-white/10 rounded-none flex flex-col h-full transition-all duration-300 hover:border-brand-gold/50"
+                    >
                         <div class="relative aspect-video overflow-hidden">
                             <img
                                 src="/images/thumb_storm.png"
@@ -162,30 +340,55 @@ import SectionShell from "../components/SectionShell.astro";
                                 decoding="async"
                                 class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
                             />
-                            <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"></div>
-                            <div class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200 shadow-[2px_2px_0px_0px_#000]">
+                            <div
+                                class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"
+                            >
+                            </div>
+                            <div
+                                class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200 shadow-[2px_2px_0px_0px_#000]"
+                            >
                                 18:45
                             </div>
                         </div>
                         <div class="flex flex-1 flex-col p-6">
-                            <div class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase mb-4">
-                                <span class="border border-zinc-700 px-2 py-1 text-zinc-400">Tournament</span>
-                                <span class="border border-zinc-700 px-2 py-1 text-zinc-400">Close‑up</span>
+                            <div
+                                class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase mb-4"
+                            >
+                                <span
+                                    class="border border-zinc-700 px-2 py-1 text-zinc-400"
+                                    ><span class="lang-en">Tournament</span><span class="lang-es hidden">Torneo</span></span
+                                >
+                                <span
+                                    class="border border-zinc-700 px-2 py-1 text-zinc-400"
+                                    ><span class="lang-en">Close‑up</span><span class="lang-es hidden">Plano cerrado</span></span
+                                >
                             </div>
-                            <h3 class="text-2xl font-bebas text-brand-bone mb-2 group-hover:text-brand-gold transition-colors uppercase">
-                                Close‑angle submission storm
+                            <h3
+                                class="text-2xl font-bebas text-brand-bone mb-2 group-hover:text-brand-gold transition-colors uppercase"
+                            >
+                                <span class="lang-en">Close‑angle submission storm</span>
+                                <span class="lang-es hidden">Tormenta de sumisiones a quemarropa</span>
                             </h3>
                             <p class="text-gray-400 text-sm mb-6 line-clamp-2">
-                                Rob's 35th kickoff. Birthday‑bash tournament debut bout. Fast‑paced scrambles captured in disgusting detail.
+                                <span class="lang-en">Rob's 35th kickoff. Birthday‑bash tournament debut bout. Fast‑paced scrambles captured in disgusting detail.</span>
+                                <span class="lang-es hidden">Inicio de los 35 de Rob. Combate debut del torneo de cumpleaños. Enganches veloces capturados con detalle brutal.</span>
                             </p>
-                            <a href="https://view.wf/v/dijjihtm" target="_blank" rel="noreferrer" class="btn-brutal brutal-shadow-white mt-auto w-full py-3 bg-brand-gold text-brand-black font-bebas text-lg tracking-wide rounded-none border border-brand-gold transition-all duration-200 text-center">
-                                Watch match
+                            <a
+                                href="https://view.wf/v/dijjihtm"
+                                target="_blank"
+                                rel="noreferrer"
+                                class="btn-brutal brutal-shadow-white mt-auto w-full py-3 bg-brand-gold text-brand-black font-bebas text-lg tracking-wide rounded-none border border-brand-gold transition-all duration-200 text-center"
+                            >
+                                <span class="lang-en">Watch match</span>
+                                <span class="lang-es hidden">Ver combate</span>
                             </a>
                         </div>
                     </div>
 
                     {/* Match 3 */}
-                    <div class="group bg-[#0A0A10] border border-white/10 rounded-none flex flex-col h-full transition-all duration-300 hover:border-brand-gold/50">
+                    <div
+                        class="group bg-[#0A0A10] border border-white/10 rounded-none flex flex-col h-full transition-all duration-300 hover:border-brand-gold/50"
+                    >
                         <div class="relative aspect-video overflow-hidden">
                             <img
                                 src="/images/Screenshot%202025-12-11%20at%204.09.49.png"
@@ -194,27 +397,53 @@ import SectionShell from "../components/SectionShell.astro";
                                 decoding="async"
                                 class="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
                             />
-                            <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"></div>
-                            <div class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200 shadow-[2px_2px_0px_0px_#000]">
+                            <div
+                                class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent"
+                            >
+                            </div>
+                            <div
+                                class="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-zinc-200 shadow-[2px_2px_0px_0px_#000]"
+                            >
                                 22:15
                             </div>
-                            <div class="absolute top-2 right-2 bg-white/10 text-zinc-100 text-[0.6rem] font-bold px-2 py-1 rounded-none shadow-[2px_2px_0px_0px_#000] uppercase tracking-wider backdrop-blur">
-                                Fan favorite
+                            <div
+                                class="absolute top-2 right-2 bg-white/10 text-zinc-100 text-[0.6rem] font-bold px-2 py-1 rounded-none shadow-[2px_2px_0px_0px_#000] uppercase tracking-wider backdrop-blur"
+                            >
+                                <span class="lang-en">Fan favorite</span>
+                                <span class="lang-es hidden">Favorito de fans</span>
                             </div>
                         </div>
                         <div class="flex flex-1 flex-col p-6">
-                            <div class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase mb-4">
-                                <span class="border border-zinc-700 px-2 py-1 text-zinc-400">Open weight</span>
-                                <span class="btn-striped-light border border-purple-400/70 px-2 py-1 text-purple-300">Hunks</span>
+                            <div
+                                class="flex flex-wrap gap-2 text-[0.6rem] font-semibold tracking-[0.24em] uppercase mb-4"
+                            >
+                                <span
+                                    class="border border-zinc-700 px-2 py-1 text-zinc-400"
+                                    ><span class="lang-en">Open weight</span><span class="lang-es hidden">Peso abierto</span></span
+                                >
+                                <span
+                                    class="btn-striped-light border border-purple-400/70 px-2 py-1 text-purple-300"
+                                    ><span class="lang-en">Hunks</span><span class="lang-es hidden">Forzudos</span></span
+                                >
                             </div>
-                            <h3 class="text-2xl font-bebas text-brand-bone mb-2 group-hover:text-brand-gold transition-colors uppercase">
-                                From intense to caress
+                            <h3
+                                class="text-2xl font-bebas text-brand-bone mb-2 group-hover:text-brand-gold transition-colors uppercase"
+                            >
+                                <span class="lang-en">From intense to caress</span>
+                                <span class="lang-es hidden">De intenso a caricia</span>
                             </h3>
                             <p class="text-gray-400 text-sm mb-6 line-clamp-2">
-                                First erotic match with Dexter Glitch. Starts as a grinding pressure war and mutates into something else entirely.
+                                <span class="lang-en">First erotic match with Dexter Glitch. Starts as a grinding pressure war and mutates into something else entirely.</span>
+                                <span class="lang-es hidden">Primer combate erótico con Dexter Glitch. Empieza como una guerra de presión y muta en algo totalmente distinto.</span>
                             </p>
-                            <a href="https://view.wf/v/thfefpll" target="_blank" rel="noreferrer" class="btn-brutal brutal-shadow-white mt-auto w-full py-3 bg-brand-gold text-brand-black font-bebas text-lg tracking-wide rounded-none border border-brand-gold transition-all duration-200 text-center">
-                                Watch match
+                            <a
+                                href="https://view.wf/v/thfefpll"
+                                target="_blank"
+                                rel="noreferrer"
+                                class="btn-brutal brutal-shadow-white mt-auto w-full py-3 bg-brand-gold text-brand-black font-bebas text-lg tracking-wide rounded-none border border-brand-gold transition-all duration-200 text-center"
+                            >
+                                <span class="lang-en">Watch match</span>
+                                <span class="lang-es hidden">Ver combate</span>
                             </a>
                         </div>
                     </div>
@@ -222,71 +451,339 @@ import SectionShell from "../components/SectionShell.astro";
             </SectionShell>
         </section>
 
+        <!-- NOT-AN-ABOUT (THE MANIFESTO / THE RULES) -->
+        <section class="relative z-10 border-t border-brand-gold/60 bg-brand-purple">
+            <SectionShell
+                id="about"
+                eyebrow="The rules"
+                heading="Not an about page. A warning."
+                kicker="If you want choreography, go watch theatre. This is pressure, control, and consequences."
+                sectionClass="pt-16 pb-20 sm:pt-20 sm:pb-24"
+            >
+                <div class="grid gap-10 lg:grid-cols-2 items-start">
+                    <!-- MANIFESTO BACKGROUND BLEED PLACEHOLDER -->
+                    <div class="absolute inset-y-0 right-0 w-1/2 hidden lg:block pointer-events-none">
+                        <div class="w-full h-full bg-white/5 flex items-center justify-center">
+                            <span class="text-[0.65rem] uppercase tracking-[0.3em] text-gray-400">
+                                Background media placeholder
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Left: Manifesto copy -->
+                    <div class="bg-[#0A0A10] border border-white/10 p-8 rounded-none">
+                        <h3 class="text-3xl font-bebas text-brand-bone mb-4 uppercase">
+                            <span class="lang-en">What you&apos;re paying for</span>
+                            <span class="lang-es hidden">Por lo que estás pagando</span>
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            <span class="lang-en">
+                                Real rounds. Real fatigue. Real control.
+                                We film underground grappling with zero script and maximum detail.
+                                If it looks uncomfortable, good. That means it&apos;s real.
+                            </span>
+                            <span class="lang-es hidden">
+                                Rounds reales. Cansancio real. Control real.
+                                Grabamos grappling clandestino sin guion y con máximo detalle.
+                                Si se ve incómodo, bien. Eso significa que es real.
+                            </span>
+                        </p>
+
+                        <div class="space-y-3 text-sm text-gray-300 uppercase tracking-widest">
+                            <div class="flex items-center gap-3">
+                                <span class="text-brand-gold text-xl">•</span>
+                                <span class="lang-en">No scripts. No works. No tourists.</span>
+                                <span class="lang-es hidden">Sin guion. Sin shows. Sin turistas.</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-brand-gold text-xl">•</span>
+                                <span class="lang-en">Vetted athletes. Real technique.</span>
+                                <span class="lang-es hidden">Atletas verificados. Técnica real.</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-brand-gold text-xl">•</span>
+                                <span class="lang-en">Private archive. Discreet billing.</span>
+                                <span class="lang-es hidden">Archivo privado. Cobro discreto.</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-brand-gold text-xl">•</span>
+                                <span class="lang-en">Full matches. No teaser cuts.</span>
+                                <span class="lang-es hidden">Combates completos. Sin recortes.</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                            <a
+                                href="#pricing"
+                                class="btn-brutal btn-striped w-full sm:w-auto px-8 py-4 bg-brand-gold border-2 border-brand-gold text-brand-black font-bebas text-xl tracking-wide shadow-[6px_6px_0px_0px_#FFFFFF] hover:shadow-[2px_2px_0px_0px_#FFFFFF] hover:translate-x-[4px] hover:translate-y-[4px] text-center"
+                            >
+                                <span class="lang-en">Unlock access</span>
+                                <span class="lang-es hidden">Desbloquear acceso</span>
+                            </a>
+                            <a
+                                href="#matches"
+                                class="btn-brutal btn-striped-light w-full sm:w-auto px-8 py-4 border-2 border-brand-gold text-brand-bone font-bebas text-xl bg-transparent shadow-[6px_6px_0px_0px_#F5C265] hover:bg-brand-gold hover:text-brand-black hover:shadow-[2px_2px_0px_0px_#FFFFFF] hover:translate-x-[4px] hover:translate-y-[4px] text-center"
+                            >
+                                <span class="lang-en">See the fights</span>
+                                <span class="lang-es hidden">Ver combates</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Proof / vibe cards -->
+                    <div class="grid gap-6">
+                        <div class="bg-[#0A0A10] border border-white/10 p-7 rounded-none">
+                            <div class="text-[0.7rem] font-semibold tracking-[0.24em] uppercase text-gray-400 mb-2">
+                                <span class="lang-en">The vibe</span>
+                                <span class="lang-es hidden">El ambiente</span>
+                            </div>
+                            <div class="text-3xl font-bebas text-brand-bone uppercase">
+                                <span class="lang-en">Underground. Clean. Brutal.</span>
+                                <span class="lang-es hidden">Clandestino. Limpio. Brutal.</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                                <span class="lang-en">High contrast visuals, tight audio, and zero distractions. The mat is the whole story.</span>
+                                <span class="lang-es hidden">Visuales con alto contraste, audio claro y cero distracciones. El mat lo es todo.</span>
+                            </p>
+                        </div>
+
+                        <div class="bg-[#0A0A10] border border-white/10 p-7 rounded-none">
+                            <div class="text-[0.7rem] font-semibold tracking-[0.24em] uppercase text-gray-400 mb-2">
+                                <span class="lang-en">The promise</span>
+                                <span class="lang-es hidden">La promesa</span>
+                            </div>
+                            <div class="text-3xl font-bebas text-brand-bone uppercase">
+                                <span class="lang-en">Full matches. Real outcomes.</span>
+                                <span class="lang-es hidden">Combates completos. Resultados reales.</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                                <span class="lang-en">No narrative edits. No fake drama. Just pressure, control, and the tap.</span>
+                                <span class="lang-es hidden">Sin edición narrativa. Sin drama falso. Solo presión, control y el tap.</span>
+                            </p>
+                        </div>
+
+                        <div class="bg-[#0A0A10] border border-white/10 p-7 rounded-none">
+                            <div class="text-[0.7rem] font-semibold tracking-[0.24em] uppercase text-gray-400 mb-2">
+                                <span class="lang-en">The access</span>
+                                <span class="lang-es hidden">El acceso</span>
+                            </div>
+                            <div class="text-3xl font-bebas text-brand-bone uppercase">
+                                <span class="lang-en">Secure. Private. Cancel anytime.</span>
+                                <span class="lang-es hidden">Seguro. Privado. Cancela cuando sea.</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                                <span class="lang-en">Watch on your terms. Discreet billing and a private library that keeps growing.</span>
+                                <span class="lang-es hidden">Mira a tu manera. Cobro discreto y una biblioteca privada que no deja de crecer.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </SectionShell>
+        </section>
+
         <!-- PRICING -->
-        <section id="pricing" class="py-24 bg-brand-purple relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
+        <section
+            id="pricing"
+            class="scroll-mt-20 -mt-28 pt-0 pb-12 bg-brand-purple relative overflow-hidden"
+        >
+            <!-- PRICING MEDIA STRIP PLACEHOLDER -->
+            <div class="relative mb-12 w-full aspect-[7.1/1] overflow-hidden border-t border-b border-white/10">
+                <video
+                    class="absolute inset-0 w-full h-full object-cover opacity-90"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                >
+                    <source
+                        src="/media/media_strip_1440p.mp4"
+                        type="video/mp4"
+                        media="(min-width: 1600px)"
+                    />
+                    <source
+                        src="/media/media_strip_1080p.mp4"
+                        type="video/mp4"
+                        media="(min-width: 900px)"
+                    />
+                    <source
+                        src="/media/media_strip_720p.mp4"
+                        type="video/mp4"
+                    />
+                </video>
+
+                <!-- Darken + grit overlay so it reads as pressure, not decoration -->
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/70"
+                ></div>
+                <!-- Soft edge bleed (top) -->
+                <div
+                    class="pointer-events-none absolute top-0 left-0 w-full h-6
+                           bg-gradient-to-b from-black/80 to-transparent"
+                ></div>
+
+                <!-- Soft edge bleed (bottom) -->
+                <div
+                    class="pointer-events-none absolute bottom-0 left-0 w-full h-6
+                           bg-gradient-to-t from-black/80 to-transparent"
+                ></div>
+            </div>
+            <div
+                class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold rounded-full blur-[150px] opacity-10 pointer-events-none"
+            >
+            </div>
 
             <div class="max-w-7xl mx-auto px-4 relative z-10">
                 <div class="text-center mb-16">
                     <h2 class="text-5xl md:text-6xl font-bebas text-brand-bone mb-4">
-                        Choose Your Level
+                        <span class="lang-en">Choose Your Level</span>
+                        <span class="lang-es hidden">Elige tu nivel</span>
                     </h2>
                     <p class="text-gray-400 max-w-lg mx-auto">
-                        Start small, then unlock everything. Stay for the drops. Cancel anytime.
+                        <span class="lang-en">Start small, then unlock everything. Stay for the drops. Cancel anytime.</span>
+                        <span class="lang-es hidden">Empieza pequeño y desbloquea todo. Quédate por los estrenos. Cancela cuando quieras.</span>
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
-                    
-                    <div class="bg-brand-black/50 border border-white/10 p-8 rounded-none backdrop-blur-sm">
-                        <h3 class="text-2xl font-bebas text-gray-300 mb-2">Faphouse 2-day trial</h3>
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center"
+                >
+                    <div
+                        class="bg-brand-black/50 border border-white/10 p-8 rounded-none backdrop-blur-sm"
+                    >
+                        <h3 class="text-2xl font-bebas text-gray-300 mb-2">
+                            <span class="lang-en">Faphouse 2-day trial</span>
+                            <span class="lang-es hidden">Prueba de 2 días en Faphouse</span>
+                        </h3>
                         <div class="text-3xl font-bold text-white mb-6">
-                            $0.99 <span class="text-sm font-normal text-gray-500">/ 2 days</span>
+                            $0.99 <span class="text-sm font-normal text-gray-500"
+                                ><span class="lang-en">/ 2 days</span><span class="lang-es hidden">/ 2 días</span></span
+                            >
                         </div>
                         <ul class="space-y-4 mb-8 text-sm text-gray-400">
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> 48-hour trial access</li>
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> Watch up to 3 selected premium matches</li>
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> Full HD streaming (no downloads)</li>
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> Auto-upgrades to Full Membership unless canceled</li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">48-hour trial access</span>
+                                <span class="lang-es hidden">Acceso de prueba por 48 horas</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">Watch up to 3 selected premium matches</span>
+                                <span class="lang-es hidden">Mira hasta 3 combates premium seleccionados</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">Full HD streaming (no downloads)</span>
+                                <span class="lang-es hidden">Streaming Full HD (sin descargas)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">Auto-upgrades to Full Membership unless canceled</span>
+                                <span class="lang-es hidden">Se actualiza a Membresía Completa si no cancelas</span>
+                            </li>
                         </ul>
-                        <a href="#" class="btn-brutal brutal-shadow-gold block w-full py-3 text-center border-2 border-white/20 text-white hover:border-white hover:bg-white hover:text-brand-black font-bebas tracking-wide transition-all rounded-none">
-                            GET 2-DAY TRIAL
+                        <a
+                            href="#"
+                            class="btn-brutal brutal-shadow-gold block w-full py-3 text-center border-2 border-white/20 text-white hover:border-white hover:bg-white hover:text-brand-black font-bebas tracking-wide transition-all rounded-none"
+                        >
+                            <span class="lang-en">Get 2-Day Trial</span>
+                            <span class="lang-es hidden">Obtén prueba de 2 días</span>
                         </a>
                     </div>
 
-                    <div class="bg-[#151520] border-2 border-brand-gold p-8 rounded-none relative transform scale-105 shadow-[0_0_40px_-10px_rgba(245,194,101,0.3)]">
-                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-gold text-brand-black text-xs font-bold uppercase px-4 py-1 rounded-none border border-black tracking-wider">
-                            Most Popular
+                    <div
+                        class="bg-[#151520] border-2 border-brand-gold p-8 rounded-none relative transform scale-105 shadow-[0_0_40px_-10px_rgba(245,194,101,0.3)]"
+                    >
+                        <div
+                            class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-gold text-brand-black text-xs font-bold uppercase px-4 py-1 rounded-none border border-black tracking-wider"
+                        >
+                            <span class="lang-en">Most Popular</span>
+                            <span class="lang-es hidden">Más popular</span>
                         </div>
-                        <h3 class="text-3xl font-bebas text-white mb-2">Faphouse Full Membership</h3>
+                        <h3 class="text-3xl font-bebas text-white mb-2">
+                            <span class="lang-en">Faphouse Full Membership</span>
+                            <span class="lang-es hidden">Membresía completa en Faphouse</span>
+                        </h3>
                         <div class="text-4xl font-bold text-white mb-6">
-                            $19.99 <span class="text-sm font-normal text-gray-500">/ month</span>
+                            $19.99 <span class="text-sm font-normal text-gray-500"
+                                ><span class="lang-en">/ month</span><span class="lang-es hidden">/ mes</span></span
+                            >
                         </div>
                         <ul class="space-y-4 mb-8 text-sm text-gray-300">
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> Full access to 68 premium videos</li>
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> 89 exclusive photos, updated regularly</li>
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> New matches added continuously</li>
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> Private chat access</li>
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> Discreet, secure billing</li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">Full access to 68 premium videos</span>
+                                <span class="lang-es hidden">Acceso completo a 68 videos premium</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">89 exclusive photos, updated regularly</span>
+                                <span class="lang-es hidden">89 fotos exclusivas, se actualizan regularmente</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">New matches added continuously</span>
+                                <span class="lang-es hidden">Nuevos combates añadidos constantemente</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">Private chat access</span>
+                                <span class="lang-es hidden">Acceso a chat privado</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">Discreet, secure billing</span>
+                                <span class="lang-es hidden">Cobro discreto y seguro</span>
+                            </li>
                         </ul>
-                        <a href="#" class="btn-brutal btn-striped brutal-shadow-white block w-full py-4 text-center bg-brand-gold text-brand-black border-2 border-brand-gold hover:bg-white hover:border-white font-bebas text-xl tracking-wide transition-all rounded-none">
-                            UNLOCK FULL ACCESS
+                        <a
+                            href="#"
+                            class="btn-brutal btn-striped brutal-shadow-white block w-full py-4 text-center bg-brand-gold text-brand-black border-2 border-brand-gold hover:bg-white hover:border-white font-bebas text-xl tracking-wide transition-all rounded-none"
+                        >
+                            <span class="lang-en">Unlock Full Access</span>
+                            <span class="lang-es hidden">Desbloquear acceso total</span>
                         </a>
                     </div>
 
-                    <div class="bg-brand-black/50 border border-white/10 p-8 rounded-none backdrop-blur-sm">
-                        <h3 class="text-2xl font-bebas text-brand-gold mb-2">WatchFighters Monthly</h3>
+                    <div
+                        class="bg-brand-black/50 border border-white/10 p-8 rounded-none backdrop-blur-sm"
+                    >
+                        <h3 class="text-2xl font-bebas text-brand-gold mb-2">
+                            <span class="lang-en">WatchFighters Monthly</span>
+                            <span class="lang-es hidden">WatchFighters mensual</span>
+                        </h3>
                         <div class="text-3xl font-bold text-white mb-6">
-                            $29 <span class="text-sm font-normal text-gray-500">/ month</span>
+                            $29 <span class="text-sm font-normal text-gray-500"
+                                ><span class="lang-en">/ month</span><span class="lang-es hidden">/ mes</span></span
+                            >
                         </div>
                         <ul class="space-y-4 mb-8 text-sm text-gray-400">
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> Instant access to 53 out of 60 premium videos</li>
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> Full-length bouts as they go live</li>
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> No teaser cuts</li>
-                            <li class="flex items-center"><span class="text-brand-gold mr-2 text-lg">•</span> Billing handled on WatchFighters</li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">Instant access to 53 out of 60 premium videos</span>
+                                <span class="lang-es hidden">Acceso inmediato a 53 de 60 videos premium</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">Full-length bouts as they go live</span>
+                                <span class="lang-es hidden">Combates completos en cuanto se publiquen</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">No teaser cuts</span>
+                                <span class="lang-es hidden">Sin cortes tipo teaser</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-brand-gold mr-2 text-lg">•</span>
+                                <span class="lang-en">Billing handled on WatchFighters</span>
+                                <span class="lang-es hidden">Cobro gestionado en WatchFighters</span>
+                            </li>
                         </ul>
-                        <a href="#" class="btn-brutal brutal-shadow-gold block w-full py-3 text-center border-2 border-white/20 text-white hover:border-brand-gold hover:text-brand-gold font-bebas tracking-wide transition-all rounded-none">
-                            WATCH ON WATCHFIGHTERS
+                        <a
+                            href="#"
+                            class="btn-brutal brutal-shadow-gold block w-full py-3 text-center border-2 border-white/20 text-white hover:border-brand-gold hover:text-brand-gold font-bebas tracking-wide transition-all rounded-none"
+                        >
+                            <span class="lang-en">Watch on WatchFighters</span>
+                            <span class="lang-es hidden">Ver en WatchFighters</span>
                         </a>
                     </div>
                 </div>
@@ -294,130 +791,543 @@ import SectionShell from "../components/SectionShell.astro";
         </section>
 
         <!-- FAQ -->
-        <section id="faq" class="py-24 bg-brand-purple/20">
-            <div class="max-w-3xl mx-auto px-4">
-                <h2 class="text-4xl font-bebas text-brand-bone text-center mb-12">Common Questions</h2>
-                <div class="space-y-4">
-                    <details class="group border border-white/10 bg-brand-black/50 rounded-none">
-                        <summary class="w-full px-6 py-4 text-left flex justify-between items-center cursor-pointer focus:outline-none">
-                            <span class="text-lg font-bold text-gray-200">How do I watch purchased matches?</span>
-                            <span aria-hidden="true" class="text-brand-gold text-2xl transition-transform duration-200 group-open:rotate-45">+</span>
-                        </summary>
-                        <div class="px-6 pb-4 text-gray-400 text-sm">
-                            Once you purchase a match or subscribe, you get instant access to your library dashboard. Stream in 4K or download MP4s. No DRM.
-                        </div>
-                    </details>
-                    <details class="group border border-white/10 bg-brand-black/50 rounded-none">
-                        <summary class="w-full px-6 py-4 text-left flex justify-between items-center cursor-pointer focus:outline-none">
-                            <span class="text-lg font-bold text-gray-200">Is this content real?</span>
-                            <span aria-hidden="true" class="text-brand-gold text-2xl transition-transform duration-200 group-open:rotate-45">+</span>
-                        </summary>
-                        <div class="px-6 pb-4 text-gray-400 text-sm">
-                            100%. If it looks painful, it is. We vet all athletes. No works, no scripts.
-                        </div>
-                    </details>
+            <section id="faq" class="py-24 bg-brand-purple/20">
+                <div class="max-w-3xl mx-auto px-4">
+                    <h2 class="text-4xl font-bebas text-brand-bone text-center mb-12">
+                        <span class="lang-en">Common Questions</span>
+                        <span class="lang-es hidden">Preguntas frecuentes</span>
+                    </h2>
+                    <div class="space-y-4">
+                        <details
+                            class="group border border-white/10 bg-brand-black/50 rounded-none"
+                        >
+                            <summary
+                                class="w-full px-6 py-4 text-left flex justify-between items-center cursor-pointer focus:outline-none"
+                            >
+                                <span class="text-lg font-bold text-gray-200">
+                                    <span class="lang-en">How do I watch purchased matches?</span>
+                                    <span class="lang-es hidden">¿Cómo veo los combates que compré?</span>
+                                </span>
+                                <span
+                                    aria-hidden="true"
+                                    class="text-brand-gold text-2xl transition-transform duration-200 group-open:rotate-45"
+                                    >+</span
+                                >
+                            </summary>
+                            <div class="px-6 pb-4 text-gray-400 text-sm">
+                                <span class="lang-en">Once you purchase a match or subscribe, you get instant access to your library dashboard. Stream in 4K or download MP4s. No DRM.</span>
+                                <span class="lang-es hidden">Al comprar un combate o suscribirte, obtienes acceso inmediato a tu panel de biblioteca. Haz streaming en 4K o descarga MP4s. Sin DRM.</span>
+                            </div>
+                        </details>
+                        <details
+                            class="group border border-white/10 bg-brand-black/50 rounded-none"
+                        >
+                            <summary
+                                class="w-full px-6 py-4 text-left flex justify-between items-center cursor-pointer focus:outline-none"
+                            >
+                                <span class="text-lg font-bold text-gray-200">
+                                    <span class="lang-en">Is the content real or staged?</span>
+                                    <span class="lang-es hidden">¿El contenido es real o actuado?</span>
+                                </span>
+                                <span
+                                    aria-hidden="true"
+                                    class="text-brand-gold text-2xl transition-transform duration-200 group-open:rotate-45"
+                                      >+</span
+                                >
+                            </summary>
+                            <div class="px-6 pb-4 text-gray-400 text-sm">
+                                <span class="lang-en">All matches and custom videos feature real athletes, real pressure, and unscripted action. Nothing is choreographed or acted. What you see is exactly what happened on the mat.</span>
+                                <span class="lang-es hidden">Todos los combates y videos personalizados muestran atletas reales, presión real y acción sin guion. Nada está coreografiado ni actuado. Lo que ves es exactamente lo que pasó en el tatami.</span>
+                            </div>
+                        </details>
+                        <details
+                            class="group border border-white/10 bg-brand-black/50 rounded-none"
+                        >
+                            <summary
+                                class="w-full px-6 py-4 text-left flex justify-between items-center cursor-pointer focus:outline-none"
+                            >
+                                <span class="text-lg font-bold text-gray-200">
+                                    <span class="lang-en">Who is this content for?</span>
+                                    <span class="lang-es hidden">¿Para quién es este contenido?</span>
+                                </span>
+                                <span
+                                    aria-hidden="true"
+                                    class="text-brand-gold text-2xl transition-transform duration-200 group-open:rotate-45"
+                                    >+</span
+                                >
+                            </summary>
+                            <div class="px-6 pb-4 text-gray-400 text-sm">
+                                <span class="lang-en">This site is for viewers who appreciate authentic grappling, physical dominance, and raw intensity. If you want realism, close-range action, and controlled violence, you’re in the right place. If not, this probably isn’t your scene.</span>
+                                <span class="lang-es hidden">Este sitio es para quienes valoran el grappling auténtico, la dominación física y la intensidad pura. Si quieres realismo, acción de cerca y violencia controlada, estás en el lugar correcto. Si no, probablemente esto no es para ti.</span>
+                            </div>
+                        </details>
+                        <details
+                            class="group border border-white/10 bg-brand-black/50 rounded-none"
+                        >
+                            <summary
+                                class="w-full px-6 py-4 text-left flex justify-between items-center cursor-pointer focus:outline-none"
+                            >
+                                <span class="text-lg font-bold text-gray-200">
+                                    <span class="lang-en">How do custom videos work?</span>
+                                    <span class="lang-es hidden">¿Cómo funcionan los videos personalizados?</span>
+                                </span>
+                                <span
+                                    aria-hidden="true"
+                                    class="text-brand-gold text-2xl transition-transform duration-200 group-open:rotate-45"
+                                    >+</span
+                                >
+                            </summary>
+                            <div class="px-6 pb-4 text-gray-400 text-sm">
+                                <span class="lang-en">Custom videos are produced per request, based on your preferences and clearly defined boundaries. Once details are agreed upon and payment is received, production begins. Delivery time depends on complexity, and custom content is made exclusively for you and not resold.</span>
+                                <span class="lang-es hidden">Los videos personalizados se producen a pedido, según tus preferencias y límites claros. Una vez acordados los detalles y recibido el pago, inicia la producción. El tiempo de entrega depende de la complejidad y el contenido personalizado se hace solo para ti y no se revende.</span>
+                            </div>
+                        </details>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 
-<style>
-    /* FORCE HIDDEN: Ensure language toggles work instantly */
-    .hidden {
-        display: none !important;
-    }
+    <style>
+        /* Font: IBM Plex Sans Condensed (subtitle) */
+        @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600&display=swap");
+        .font-plex-condensed {
+            font-family: "IBM Plex Sans Condensed", ui-sans-serif, system-ui, -apple-system,
+                "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            font-weight: 500;
+        }
+        /* FORCE HIDDEN: Ensure language toggles work instantly */
+        .hidden {
+            display: none !important;
+        }
 
-    /* 1. The Glitch Effect logic */
-    .glitch-text {
-        position: relative;
-    }
-    .glitch-text::before,
-    .glitch-text::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #020308; /* Matches your brand-black bg to hide the original text */
-        opacity: 0.8;
-    }
-    .glitch-text::before {
-        left: 2px;
-        text-shadow: -1px 0 #ff00c1; /* Cyber magenta offset */
-        clip-path: inset(44px 0 56px 0);
-        animation: glitch-anim 5s infinite linear alternate-reverse;
-    }
-    .glitch-text::after {
-        left: -2px;
-        text-shadow: -1px 0 #00fff9; /* Cyan offset */
-        clip-path: inset(25px 0 96px 0);
-        animation: glitch-anim2 5s infinite linear alternate-reverse;
-    }
+        /* Hero micro-motion: make it feel like a monitor feed (not a SaaS widget) */
+        .hero-microbox {
+            border: 1px solid rgba(245, 194, 101, 0.65); /* brand gold */
+            background: rgba(2, 3, 8, 0.75); /* brand-black */
+            box-shadow:
+                0 0 0 1px rgba(0, 0, 0, 0.92) inset,
+                0 18px 55px rgba(0, 0, 0, 0.65),
+                0 0 45px rgba(245, 194, 101, 0.16);
+            filter: saturate(1.06) contrast(1.06);
+        }
 
-    /* 2. The Title Scanline - AGGRESSIVE UPDATE */
-    .rg-scanline {
-        will-change: background-position;
-        mix-blend-mode: hard-light; /* Makes the gold burn into the white text */
-        
-        background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(245, 194, 101, 0.0) 20%,
-            rgba(245, 194, 101, 0.3) 45%,
-            rgba(245, 194, 101, 0.8) 50%, /* 80% opacity core beam */
-            rgba(245, 194, 101, 0.3) 55%, 
-            rgba(245, 194, 101, 0.0) 80%,
-            transparent 100%
-        );
-        background-size: 100% 200%;
-        animation: scanTitle 3s linear infinite;
-    }
+        .hero-microvideo {
+            /* Hard bias to chest + arms (less mat, more body) */
+            transform-origin: 76% 32%;
 
-    @keyframes scanTitle {
-        0% { background-position: 0% -100%; }
-        100% { background-position: 0% 200%; }
-    }
+            /* Emphasize muscle separation, protect highlights */
+            filter: contrast(1.14) saturate(1.06) brightness(1.015);
 
-    @keyframes glitch-anim {
-        0% { clip-path: inset(38px 0 49px 0); }
-        5% { clip-path: inset(72px 0 24px 0); }
-        10% { clip-path: inset(10px 0 88px 0); }
-        15% { clip-path: inset(6px 0 6px 0); }
-        20% { clip-path: inset(2px 0 2px 0); }
-        100% { clip-path: inset(57px 0 11px 0); }
-    }
-    @keyframes glitch-anim2 {
-        0% { clip-path: inset(25px 0 96px 0); }
-        5% { clip-path: inset(15px 0 2px 0); }
-        10% { clip-path: inset(11px 0 83px 0); }
-        15% { clip-path: inset(39px 0 5px 0); }
-        20% { clip-path: inset(75px 0 32px 0); }
-        100% { clip-path: inset(96px 0 44px 0); }
-    }
-</style>
+            animation: microZoom var(--microZoomDur, 9s) ease-in-out infinite alternate;
+        }
 
+        @media (min-width: 768px) {
+            .hero-microvideo {
+                /* Desktop: still chest‑forward, slightly calmer */
+                transform-origin: 74% 34%;
+            }
+        }
+
+        .hero-microlabel {
+            display: inline-block;
+            padding: 0.35rem 0.6rem;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(245, 194, 101, 0.95);
+            background: rgba(2, 3, 8, 0.75);
+            border: 1px solid rgba(245, 194, 101, 0.35);
+        }
+
+        .hero-microoverlay {
+            pointer-events: none;
+
+            /* Heavy vignette + darken + strong scan + grit */
+            background:
+                radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0.72) 100%),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.22) 35%, rgba(0, 0, 0, 0.65)),
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(255, 255, 255, 0.06) 0px,
+                    rgba(255, 255, 255, 0.06) 1px,
+                    rgba(0, 0, 0, 0) 3px,
+                    rgba(0, 0, 0, 0) 7px
+                ),
+                repeating-linear-gradient(
+                    to right,
+                    rgba(255, 255, 255, 0.018) 0px,
+                    rgba(255, 255, 255, 0.018) 1px,
+                    rgba(0, 0, 0, 0) 6px,
+                    rgba(0, 0, 0, 0) 12px
+                );
+
+            mix-blend-mode: multiply;
+            opacity: 0.98;
+
+            /* slower analog crawl */
+            animation:
+                microNoise var(--microNoiseDur, 4.8s) steps(2, end) infinite,
+                overlayDrift var(--overlayDriftDur, 11s) ease-in-out infinite alternate,
+                overlayCrawl var(--overlayCrawlDur, 7.5s) linear infinite;
+        }
+
+        .hero-dot {
+            filter:
+                drop-shadow(0 0 36px rgba(245, 194, 101, 0.98))
+                drop-shadow(0 0 14px rgba(245, 194, 101, 0.7));
+            position: absolute;
+            right: -0.1em;
+            top: 0;
+        }
+
+        .hero-title .block {
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .hero-pin {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 90vh;
+            z-index: 0;
+        }
+
+        .hero-cover {
+            position: relative;
+            z-index: 10;
+            margin-top: 0;
+            background: #020308;
+        }
+
+        @media (max-width: 1023px) {
+            .hero-pin {
+                position: relative;
+                inset: auto;
+            }
+
+            .hero-cover {
+                margin-top: 0;
+            }
+        }
+        @keyframes microZoom {
+            0%   { transform: scale(1.26); }
+            100% { transform: scale(1.34); }
+        }
+
+        @keyframes overlayDrift {
+            0%   { opacity: 0.96; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes overlayCrawl {
+            0% {
+                background-position: 0 0, 0 0, 0 0, 0 0;
+            }
+            100% {
+                background-position: 0 0, 0 0, 0 120px, 120px 0;
+            }
+        }
+
+        /* 1. The Glitch Effect logic */
+        .glitch-text {
+            position: relative;
+        }
+        /* Apply to elements that are NOT .no-glitch */
+        .glitch-text:not(.no-glitch)::before,
+        .glitch-text:not(.no-glitch)::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #020308; /* Matches your brand-black bg to hide the original text */
+            opacity: 0.8;
+        }
+        .glitch-text:not(.no-glitch)::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1; /* Cyber magenta offset */
+            clip-path: inset(44px 0 56px 0);
+            /* Runs once (forwards) then stops */
+            animation: glitch-anim 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+                forwards;
+        }
+        .glitch-text:not(.no-glitch)::after {
+            left: -2px;
+            text-shadow: -1px 0 #00fff9; /* Cyan offset */
+            clip-path: inset(25px 0 96px 0);
+            /* Runs once (forwards) then stops */
+            animation: glitch-anim2 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+                forwards;
+        }
+
+        /* 2. The Title Scanline - AGGRESSIVE UPDATE */
+        .rg-scanline {
+            will-change: background-position;
+            mix-blend-mode: hard-light; /* Makes the gold burn into the white text */
+
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(245, 194, 101, 0) 20%,
+                rgba(245, 194, 101, 0.1) 45%, /* Reduced opacity as requested */
+                rgba(245, 194, 101, 0.15) 50%, /* Reduced opacity as requested */
+                rgba(245, 194, 101, 0.1) 55%,
+                rgba(245, 194, 101, 0) 80%,
+                transparent 100%
+            );
+            background-size: 100% 200%;
+            animation: scanTitle 3s linear infinite;
+        }
+
+        .dot-glow {
+            text-shadow: 0 0 10px rgba(245, 194, 101, 0.8), 0 0 20px rgba(245, 194, 101, 0.5);
+        }
+
+        @keyframes scanTitle {
+            0% {
+                background-position: 0% -100%;
+            }
+            100% {
+                background-position: 0% 200%;
+            }
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip-path: inset(38px 0 49px 0);
+                opacity: 1;
+            }
+            20% {
+                clip-path: inset(72px 0 24px 0);
+            }
+            40% {
+                clip-path: inset(10px 0 88px 0);
+            }
+            60% {
+                clip-path: inset(6px 0 6px 0);
+            }
+            80% {
+                clip-path: inset(2px 0 2px 0);
+            }
+            99% {
+                opacity: 1;
+            }
+            100% {
+                clip-path: inset(0, 0, 0, 0);
+                opacity: 0;
+            } /* Settle to solid text */
+        }
+        @keyframes glitch-anim2 {
+            0% {
+                clip-path: inset(25px 0 96px 0);
+                opacity: 1;
+            }
+            20% {
+                clip-path: inset(15px 0 2px 0);
+            }
+            40% {
+                clip-path: inset(11px 0 83px 0);
+            }
+            60% {
+                clip-path: inset(39px 0 5px 0);
+            }
+            80% {
+                clip-path: inset(75px 0 32px 0);
+            }
+            99% {
+                opacity: 1;
+            }
+            100% {
+                clip-path: inset(0, 0, 0, 0);
+                opacity: 0;
+            } /* Settle to solid text */
+        }
+
+        @keyframes microNoise {
+            0% {
+                opacity: 0.92;
+                transform: translateY(0px);
+                filter: contrast(1.02);
+            }
+            10% { opacity: 0.98; transform: translateY(-1px); }
+            20% { opacity: 0.90; transform: translateY(1px); }
+            30% { opacity: 0.99; transform: translateY(-2px); }
+            40% { opacity: 0.93; transform: translateY(0px); }
+            50% { opacity: 0.99; transform: translateY(2px); filter: contrast(1.05); }
+            60% { opacity: 0.91; transform: translateY(-1px); }
+            70% { opacity: 0.98; transform: translateY(1px); }
+            80% { opacity: 0.92; transform: translateY(0px); }
+            90% { opacity: 0.99; transform: translateY(-1px); }
+            100% {
+                opacity: 0.92;
+                transform: translateY(0px);
+                filter: contrast(1.02);
+            }
+        }
+    </style>
 </BaseLayout>
 
 <script>
-    // Simple Engineer Hack for Translations
-    // No React state, just DOM manipulation for max speed.
-    const toggleBtn = document.getElementById('lang-toggle');
-    let isSpanish = false;
+    // Hero micro-motion: reduce "obvious loop" by random start + tiny per-cycle variation
+    const heroVideo = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+    if (heroVideo) {
+        const rand = (min: number, max: number): number => min + Math.random() * (max - min);
 
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-            isSpanish = !isSpanish;
-            const enElements = document.querySelectorAll('.lang-en');
-            const esElements = document.querySelectorAll('.lang-es');
+        const randInt = (min: number, max: number): number => Math.floor(rand(min, max + 1));
 
-            if (isSpanish) {
-                enElements.forEach(el => el.classList.add('hidden'));
-                esElements.forEach(el => el.classList.remove('hidden'));
+        const applyLoopDisguiseVars = () => {
+            const box = heroVideo.closest('.hero-microbox');
+            if (!(box instanceof HTMLElement)) return;
+            // De-sync cadences so the eye can’t lock onto repetition
+            box.style.setProperty('--microZoomDur', `${randInt(8, 13)}s`);
+            box.style.setProperty('--microNoiseDur', `${rand(4.2, 6.2).toFixed(2)}s`);
+            box.style.setProperty('--overlayDriftDur', `${randInt(9, 17)}s`);
+            box.style.setProperty('--overlayCrawlDur', `${randInt(6, 12)}s`);
+        };
+
+        const applyRate = () => {
+            // Keep it subtle: heavy, not slo-mo
+            heroVideo.playbackRate = rand(0.88, 0.93);
+        };
+
+        const jumpToRandomInPoint = () => {
+            const d = heroVideo.duration;
+            if (!Number.isFinite(d) || d <= 3) return;
+            // Avoid hard cuts at frame 0 / last frames
+            heroVideo.currentTime = rand(0.35, Math.max(0.35, d - 2.2));
+        };
+
+        const softLoop = () => {
+            applyLoopDisguiseVars();
+            applyRate();
+            jumpToRandomInPoint();
+            // Try to resume playback smoothly
+            const p = heroVideo.play();
+            if (p && typeof p.catch === 'function') p.catch(() => {});
+        };
+
+        heroVideo.addEventListener('loadedmetadata', () => {
+            softLoop();
+        });
+
+        // Soft manual loop: when the clip ends, jump to a new in-point and keep going
+        heroVideo.addEventListener('ended', () => {
+            softLoop();
+        });
+    }
+
+    // Device and connection detection for optimal video selection
+    function selectOptimalVideo() {
+        const video = document.getElementById('hero-micro-video') as HTMLVideoElement;
+        console.log('Hero micro video element found:', !!video);
+        if (!video) return;
+
+        // Get screen dimensions for device detection
+        const screenWidth = window.screen.width;
+        const screenHeight = window.screen.height;
+        const pixelRatio = window.devicePixelRatio || 1;
+        
+        // Get connection information if available
+        const nav = navigator as any;
+        const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
+        let connectionSpeed = '4g'; // default to fast connection
+        let saveData = false;
+        
+        if (connection) {
+            // Determine connection quality
+            if (connection.saveData) {
+                saveData = true;
+            } else if (connection.effectiveType) {
+                connectionSpeed = connection.effectiveType; // 'slow-2g', '2g', '3g', '4g'
+            } else if (connection.downlink) {
+                // Fallback: use downlink speed in Mbps
+                const downlink = connection.downlink;
+                if (downlink < 0.5) connectionSpeed = '2g';
+                else if (downlink < 1.5) connectionSpeed = '3g';
+                else connectionSpeed = '4g';
+            }
+        }
+
+        // Device detection based on screen size and pixel density
+        let videoQuality = '720p';
+        
+        // Check for high-resolution displays
+        const effectiveWidth = screenWidth * pixelRatio;
+        const effectiveHeight = screenHeight * pixelRatio;
+        
+        if (saveData) {
+            // Always use lowest quality on data saver mode
+            videoQuality = '720p';
+        } else if (connectionSpeed === 'slow-2g' || connectionSpeed === '2g') {
+            // Use lowest quality for slow connections
+            videoQuality = '720p';
+        } else if (connectionSpeed === '3g') {
+            // Medium quality for 3g
+            if (effectiveWidth >= 1920 || effectiveHeight >= 1080) {
+                videoQuality = '1080p';
             } else {
-                enElements.forEach(el => el.classList.remove('hidden'));
-                esElements.forEach(el => el.classList.add('hidden'));
+                videoQuality = '720p';
+            }
+        } else {
+            // Fast connection (4g+) - select based on device capabilities
+            if (effectiveWidth >= 2560 || effectiveHeight >= 1440) {
+                videoQuality = '1440p';
+            } else if (effectiveWidth >= 1920 || effectiveHeight >= 1080) {
+                videoQuality = '1080p';
+            } else {
+                videoQuality = '720p';
+            }
+        }
+
+        // Mobile device detection for additional optimization
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (isMobile && connectionSpeed !== '4g') {
+            videoQuality = '720p'; // Conservative for mobile on slower connections
+        }
+
+        // Update video source by reordering the source elements
+        const sources = video.querySelectorAll('source');
+        const videoPath = `/media/HERO_LOOP_${videoQuality}.mp4`;
+        console.log('Video selected:', videoQuality, 'Path:', videoPath);
+        console.log('Available sources:', Array.from(sources).map(s => s.src));
+
+        // Find and move the selected source to the top
+        let sourceFound = false;
+        sources.forEach(source => {
+            if (!sourceFound && source.src.includes(videoQuality)) {
+                video.insertBefore(source, video.firstChild);
+                video.load(); // Reload video with new source order
+                sourceFound = true;
+                console.log('Source reordered and video loaded');
             }
         });
+
+        // Try to play the video
+        video.play().catch((error: any) => {
+            console.warn('Video autoplay failed:', error);
+        });
+    }
+
+    // Initialize video selection when DOM is ready
+    document.addEventListener('DOMContentLoaded', selectOptimalVideo);
+    
+    // Re-evaluate on window resize (for device orientation changes)
+    let resizeTimeout: number;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = window.setTimeout(selectOptimalVideo, 500);
+    });
+
+    // Listen for connection changes
+    const nav = navigator as any;
+    const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
+    if (connection) {
+        connection.addEventListener('change', selectOptimalVideo);
     }
 </script>
