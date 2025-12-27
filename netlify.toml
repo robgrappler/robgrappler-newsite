@@ -9,3 +9,6 @@
   command = "npm run dev"
   port = 8888
   targetPort = 4321
+
+[build.environment]
+  NODE_VERSION = "20"
