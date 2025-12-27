@@ -28,6 +28,10 @@ pnpm-lock.yaml
 *.bmp
 *.psd
 *.xcf
+
+# Exception: Allow media in public/
+!public/images/*
+!public/videos/*
 .clinerules/byterover-rules.md
 .kilocode/rules/byterover-rules.md
 .roo/rules/byterover-rules.md
