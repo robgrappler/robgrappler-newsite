@@ -1,8 +1,11 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import LegalLayout from "../layouts/LegalLayout.astro";
 ---
 
-<BaseLayout title="Privacy Policy | Robgrappler" description="Robgrappler privacy policy.">
+<LegalLayout
+    title="Privacy Policy | Robgrappler"
+    description="Robgrappler privacy policy."
+>
     <!-- LEGAL PAGES (Simulated Routing for SPA) --><!-- Privacy Policy -->
     <section
         id="privacy"
@@ -12,32 +15,67 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <h1
                 class="text-4xl font-bebas text-brand-bone mb-8 border-b border-brand-gold pb-4"
             >
-                Privacy Policy
+                <span class="lang-en">Privacy Policy</span>
+                <span class="lang-es hidden">Política de Privacidad</span>
             </h1>
             <div class="prose prose-invert prose-sm text-gray-400">
-                <h3 class="text-white font-bold mt-6 mb-2">1. Data Collection</h3>
+                <h3 class="text-white font-bold mt-6 mb-2">
+                    <span class="lang-en">1. Data Collection</span>
+                    <span class="lang-es hidden">1. Recopilación de Datos</span>
+                </h3>
                 <p>
-                    We collect basic usage data (IP, browser type) to optimize the
-                    site. If you buy something, we store your email to deliver the
-                    product. That's it.
+                    <span class="lang-en"
+                        >We collect basic usage data (IP, browser type) to
+                        optimize the site. If you buy something, we store your
+                        email to deliver the product. That's it.</span
+                    >
+                    <span class="lang-es hidden"
+                        >Recopilamos datos básicos de uso (IP, tipo de
+                        navegador) para optimizar el sitio. Si compras algo,
+                        guardamos tu correo para entregar el producto. Eso es
+                        todo.</span
+                    >
                 </p>
-                <h3 class="text-white font-bold mt-6 mb-2">2. Payments</h3>
+                <h3 class="text-white font-bold mt-6 mb-2">
+                    <span class="lang-en">2. Payments</span>
+                    <span class="lang-es hidden">2. Pagos</span>
+                </h3>
                 <p>
-                    We do not store credit card details. All transactions are
-                    processed via Stripe. We only see the last 4 digits.
+                    <span class="lang-en"
+                        >We do not store credit card details. All transactions
+                        are processed via Stripe. We only see the last 4 digits.</span
+                    >
+                    <span class="lang-es hidden"
+                        >No guardamos detalles de tarjetas de crédito. Todas las
+                        transacciones se procesan vía Stripe. Solo vemos los
+                        últimos 4 dígitos.</span
+                    >
                 </p>
-                <h3 class="text-white font-bold mt-6 mb-2">3. Your Rights</h3>
+                <h3 class="text-white font-bold mt-6 mb-2">
+                    <span class="lang-en">3. Your Rights</span>
+                    <span class="lang-es hidden">3. Tus Derechos</span>
+                </h3>
                 <p>
-                    Want us to delete your account? Email support@robgrappler.io and
-                    we will wipe your data within 48 hours.
+                    <span class="lang-en"
+                        >Want us to delete your account? Email
+                        support@robgrappler.io and we will wipe your data within
+                        48 hours.</span
+                    >
+                    <span class="lang-es hidden"
+                        >¿Quieres que borremos tu cuenta? Envía un correo a
+                        support@robgrappler.io y borraremos tus datos en 48
+                        horas.</span
+                    >
                 </p>
             </div>
             <a
                 href="/"
                 data-track="footer_back_home"
                 class="mt-8 inline-block text-brand-gold hover:text-white font-bold"
-                >&larr; Back to Home</a
             >
+                <span class="lang-en">&larr; Back to Home</span>
+                <span class="lang-es hidden">&larr; Volver al Inicio</span>
+            </a>
         </div>
     </section>
-</BaseLayout>
+</LegalLayout>

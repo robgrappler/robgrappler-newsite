@@ -1,8 +1,11 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import LegalLayout from "../layouts/LegalLayout.astro";
 ---
 
-<BaseLayout title="Age Disclaimer | Robgrappler" description="Age disclaimer for Robgrappler.">
+<LegalLayout
+    title="Age Disclaimer | Robgrappler"
+    description="Age disclaimer for Robgrappler."
+>
     <!-- Age Disclaimer -->
     <section
         id="age-disclaimer"
@@ -12,26 +15,47 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <h1
                 class="text-4xl font-bebas text-brand-bone mb-8 border-b border-brand-gold pb-4"
             >
-                Age Disclaimer
+                <span class="lang-en">Age Disclaimer</span>
+                <span class="lang-es hidden">Aviso de Edad</span>
             </h1>
             <div class="prose prose-invert prose-sm text-gray-400">
-                <p class="text-xl text-white mb-4 font-bold">Content Warning</p>
-                <p>
-                    The content on Robgrappler involves intense physical combat,
-                    submission holds, and potential injury simulations. It is
-                    intended for mature audiences (18+) interested in martial arts.
+                <p class="text-xl text-white mb-4 font-bold">
+                    <span class="lang-en">Content Warning</span>
+                    <span class="lang-es hidden">Advertencia de Contenido</span>
                 </p>
                 <p>
-                    By entering this site, you confirm you are of legal age in your
-                    jurisdiction.
+                    <span class="lang-en"
+                        >The content on Robgrappler involves intense physical
+                        combat, submission holds, and potential injury
+                        simulations. It is intended for mature audiences (18+)
+                        interested in martial arts.</span
+                    >
+                    <span class="lang-es hidden"
+                        >El contenido en Robgrappler incluye combate físico
+                        intenso, llaves de sumisión y simulaciones de lesiones
+                        potenciales. Está dirigido a audiencias maduras (18+)
+                        interesadas en artes marciales.</span
+                    >
+                </p>
+                <p>
+                    <span class="lang-en"
+                        >By entering this site, you confirm you are of legal age
+                        in your jurisdiction.</span
+                    >
+                    <span class="lang-es hidden"
+                        >Al entrar a este sitio, confirmas que eres mayor de
+                        edad en tu jurisdicción.</span
+                    >
                 </p>
             </div>
             <a
                 href="/"
                 data-track="footer_back_home"
                 class="mt-8 inline-block text-brand-gold hover:text-white font-bold"
-                >&larr; Back to Home</a
             >
+                <span class="lang-en">&larr; Back to Home</span>
+                <span class="lang-es hidden">&larr; Volver al Inicio</span>
+            </a>
         </div>
     </section>
-</BaseLayout>
+</LegalLayout>

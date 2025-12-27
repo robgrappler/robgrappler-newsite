@@ -1,0 +1,312 @@
+---
+const {
+    title = "Robgrappler",
+    description = "Underground grappling cinema. Premium violence, controlled chaos.",
+    pageType = "website",
+    lang = "en",
+    ogImage = "/images/mainpic_canonical.webp",
+    jsonLd = [],
+    breadcrumbs,
+} = Astro.props;
+import "../styles/global.css";
+
+type Breadcrumb = { name: string; href: string };
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = ogImage ? new URL(ogImage, siteUrl).href : undefined;
+const hreflangEnUrl = `${canonicalUrl}?lang=en`;
+const hreflangEsUrl = `${canonicalUrl}?lang=es-mx`;
+const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+const clarityId = import.meta.env.PUBLIC_CLARITY_ID;
+
+const computedBreadcrumbs: Breadcrumb[] | undefined =
+    breadcrumbs ??
+    (Astro.url.pathname !== "/"
+        ? [
+              { name: "Home", href: "/" },
+              {
+                  name:
+                      Astro.url.pathname
+                          .replace(/\/$/, "")
+                          .split("/")
+                          .filter(Boolean)
+                          .slice(-1)[0]
+                          ?.replace(/-/g, " ")
+                          ?.replace(/^./, (c) => c.toUpperCase()) ?? "Page",
+                  href: Astro.url.pathname,
+              },
+          ]
+        : undefined);
+
+const breadcrumbJsonLd = computedBreadcrumbs
+    ? {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: computedBreadcrumbs.map(
+              (b: Breadcrumb, idx: number) => ({
+                  "@type": "ListItem",
+                  position: idx + 1,
+                  name: b.name,
+                  item: new URL(b.href, siteUrl).href,
+              }),
+          ),
+      }
+    : null;
+
+const defaultJsonLd = [
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Robgrappler",
+        url: new URL("/", siteUrl).href,
+        logo: new URL("/images/image_1.png", siteUrl).href,
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: title,
+        url: new URL("/", siteUrl).href,
+        inLanguage: ["en", "es-MX"],
+    },
+];
+
+const mergedJsonLd = [
+    ...defaultJsonLd,
+    ...(breadcrumbJsonLd ? [breadcrumbJsonLd] : []),
+    ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]),
+];
+---
+
+<html lang={lang} class="bg-rg-black text-white">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://view.wf" />
+        <link rel="preconnect" href="https://joinmy.fans" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=B612:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#050509" />
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+        <link rel="alternate" hreflang="en" href={hreflangEnUrl} />
+        <link rel="alternate" hreflang="es-MX" href={hreflangEsUrl} />
+        <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+        <meta property="og:type" content={pageType} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="Robgrappler" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:locale:alternate" content="es_MX" />
+        {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+        {ogImageUrl && <meta property="og:image:alt" content={title} />}
+        {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+
+        <slot name="head" />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(mergedJsonLd)}
+        />
+
+        {
+            ga4Id && (
+                <>
+                    <link
+                        rel="preconnect"
+                        href="https://www.googletagmanager.com"
+                        crossorigin
+                    />
+                    <script
+                        async
+                        src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
+                    />
+                    <script
+                        is:inline
+                        set:html={`window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', '${ga4Id}', { anonymize_ip: true });`}
+                    />
+                </>
+            )
+        }
+
+        {
+            clarityId && (
+                <script
+                    is:inline
+                    set:html={`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "${clarityId}");`}
+                />
+            )
+        }
+
+        <style is:global>
+            /* Global Scanline Overlay */
+            .scanline-overlay {
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 50;
+                background: linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba(245, 194, 101, 0.03) 50%,
+                    transparent
+                );
+                background-size: 100% 4px;
+                animation: scanlineMove 8s linear infinite;
+                opacity: 0.5;
+            }
+
+            @keyframes scanlineMove {
+                0% {
+                    background-position: 0 0;
+                }
+                100% {
+                    background-position: 0 4px;
+                }
+            }
+
+            /* Brutalist Button snap */
+            .btn-brutal {
+                transition: all 0.1s cubic-bezier(0, 0, 0.2, 1);
+                position: relative;
+            }
+            .btn-brutal:active {
+                transform: translate(2px, 2px);
+            }
+        </style>
+    </head>
+    <body class="relative">
+        <a
+            class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-brand-gold focus:text-brand-black focus:px-4 focus:py-2"
+            href="#main-content"
+        >
+            Skip to main content
+        </a>
+        <div
+            id="lang-live"
+            class="sr-only"
+            aria-live="polite"
+            aria-atomic="true"
+        >
+        </div>
+        <!-- Global Texture Overlays -->
+
+        <div class="rg-grain-overlay"></div>
+
+        <!-- No Header/Nav for Legal Pages -->
+
+        <main id="main-content" class="relative">
+            {
+                computedBreadcrumbs && (
+                    <nav aria-label="Breadcrumb" class="rg-shell pt-10 pb-4">
+                        <ol class="flex flex-wrap gap-2 text-xs uppercase tracking-widest text-zinc-500">
+                            {computedBreadcrumbs.map(
+                                (b: Breadcrumb, idx: number) => (
+                                    <li class="flex items-center gap-2">
+                                        {idx > 0 && (
+                                            <span aria-hidden="true">/</span>
+                                        )}
+                                        <a
+                                            class="hover:text-brand-gold transition-colors"
+                                            href={b.href}
+                                        >
+                                            {b.name}
+                                        </a>
+                                    </li>
+                                ),
+                            )}
+                        </ol>
+                    </nav>
+                )
+            }
+            <slot />
+        </main>
+
+        <!-- No Footer for Legal Pages -->
+
+        <script is:inline>
+            window.rgTrack = (event, params = {}) => {
+                if (typeof window.gtag === "function") {
+                    window.gtag("event", event, params);
+                }
+                if (typeof window.clarity === "function") {
+                    try {
+                        window.clarity("event", event);
+                    } catch (e) {}
+                }
+            };
+
+            document.addEventListener("click", (e) => {
+                const target = e.target;
+                if (!(target instanceof Element)) return;
+                const el = target.closest("[data-track]");
+                if (!el) return;
+                const name = el.getAttribute("data-track");
+                if (!name) return;
+
+                const label = el.getAttribute("data-track-label") || undefined;
+                const value = el.getAttribute("data-track-value") || undefined;
+                window.rgTrack?.(name, {
+                    href: el.getAttribute("href") || undefined,
+                    label,
+                    value,
+                });
+            });
+
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("/sw.js").catch(() => {});
+                });
+            }
+
+            // Legal Layout Translation Logic (Read-only application)
+            const getInitialLang = () => {
+                const params = new URLSearchParams(window.location.search);
+                const qp = (params.get("lang") || "").toLowerCase();
+                if (qp === "en") return "en";
+                if (
+                    qp === "es" ||
+                    qp === "es-mx" ||
+                    qp === "es_mx" ||
+                    qp.startsWith("es-")
+                )
+                    return "es";
+                const stored = (
+                    window.localStorage.getItem("rg_lang") || ""
+                ).toLowerCase();
+                if (stored === "es") return "es";
+                return "en";
+            };
+
+            const applyLang = (lang) => {
+                const isSpanish = lang === "es";
+                const enElements = document.querySelectorAll(".lang-en");
+                const esElements = document.querySelectorAll(".lang-es");
+                if (isSpanish) {
+                    enElements.forEach((el) => el.classList.add("hidden"));
+                    esElements.forEach((el) => el.classList.remove("hidden"));
+                } else {
+                    enElements.forEach((el) => el.classList.remove("hidden"));
+                    esElements.forEach((el) => el.classList.add("hidden"));
+                }
+
+                document.documentElement.setAttribute(
+                    "lang",
+                    isSpanish ? "es-MX" : "en",
+                );
+            };
+
+            // Apply initial language
+            applyLang(getInitialLang());
+        </script>
+    </body>
+</html>

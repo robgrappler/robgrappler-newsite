@@ -1,8 +1,11 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import LegalLayout from "../layouts/LegalLayout.astro";
 ---
 
-<BaseLayout title="Terms of Service | Robgrappler" description="Robgrappler terms of service.">
+<LegalLayout
+    title="Terms of Service | Robgrappler"
+    description="Robgrappler terms of service."
+>
     <!-- Terms -->
     <section
         id="terms"
@@ -12,28 +15,53 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <h1
                 class="text-4xl font-bebas text-brand-bone mb-8 border-b border-brand-gold pb-4"
             >
-                Terms of Service
+                <span class="lang-en">Terms of Service</span>
+                <span class="lang-es hidden">Términos de Servicio</span>
             </h1>
             <div class="prose prose-invert prose-sm text-gray-400">
-                <h3 class="text-white font-bold mt-6 mb-2">1. License</h3>
+                <h3 class="text-white font-bold mt-6 mb-2">
+                    <span class="lang-en">1. License</span>
+                    <span class="lang-es hidden">1. Licencia</span>
+                </h3>
                 <p>
-                    Purchases grant a personal, non-transferable license. You cannot
-                    re-upload our matches to YouTube, Instagram, or torrent sites.
-                    If we find you leaking content, we ban you for life.
+                    <span class="lang-en"
+                        >Purchases grant a personal, non-transferable license.
+                        You cannot re-upload our matches to YouTube, Instagram,
+                        or torrent sites. If we find you leaking content, we ban
+                        you for life.</span
+                    >
+                    <span class="lang-es hidden"
+                        >Las compras otorgan una licencia personal e
+                        intransferible. No puedes resubir nuestros combates a
+                        YouTube, Instagram o sitios de torrents. Si descubrimos
+                        que filtras contenido, te vetaremos de por vida.</span
+                    >
                 </p>
-                <h3 class="text-white font-bold mt-6 mb-2">2. Liability</h3>
+                <h3 class="text-white font-bold mt-6 mb-2">
+                    <span class="lang-en">2. Liability</span>
+                    <span class="lang-es hidden">2. Responsabilidad</span>
+                </h3>
                 <p>
-                    Grappling is dangerous. Do not attempt techniques seen in videos
-                    without professional supervision. Robgrappler is not liable for
-                    your injuries.
+                    <span class="lang-en"
+                        >Grappling is dangerous. Do not attempt techniques seen
+                        in videos without professional supervision. Robgrappler
+                        is not liable for your injuries.</span
+                    >
+                    <span class="lang-es hidden"
+                        >El grappling es peligroso. No intentes las técnicas que
+                        ves en los videos sin supervisión profesional.
+                        Robgrappler no se hace responsable de tus lesiones.</span
+                    >
                 </p>
             </div>
             <a
                 href="/"
                 data-track="footer_back_home"
                 class="mt-8 inline-block text-brand-gold hover:text-white font-bold"
-                >&larr; Back to Home</a
             >
+                <span class="lang-en">&larr; Back to Home</span>
+                <span class="lang-es hidden">&larr; Volver al Inicio</span>
+            </a>
         </div>
     </section>
-</BaseLayout>
+</LegalLayout>
